@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{anime.title_english ? anime.title_english : anime.title_japanese}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content  class="ion-padding">
+  <div class="card">
+    <ion-card-title>{{anime.title_english}}</ion-card-title>
+    <div class="">
+      <ion-chip class="star" color="success" >
+        {{anime.score ? (anime.score | number: '1.0-1') +' / 10 ⭐' : 'No score'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip class="star" [color]="anime.airing ? 'warning' : 'secondary'" >
+        {{anime.aired.string}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip class="star" [color]="anime.airing ? 'warning' : 'secondary'" >
+        {{anime.episodes ? anime.episodes + ' episodes' : 'No episodes'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip class="star" [color]="anime.airing ? 'warning' : 'tertiary'" >
+        {{anime.airing ? 'Airing' : 'Finished'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip *ngFor="let genre of anime.genres" color="secondary">
+        <ion-label>{{anime.genres.length == 0 ? 'No genres' : genre.name}}</ion-label>
+      </ion-chip>
+    </div>
+    <ion-img
+          class="anime-image"
+          [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{anime.title_english}}">
+    </ion-img>
+    <div class="trailer">
+      <ion-label color="warning" (click)="watchTrailer(anime.trailer.url)"><u>Click here to see the Trailer </u>
+      </ion-label>
+      <ion-icon color="warning" slot="end" name="videocam"></ion-icon>
+    </div>
+    <ion-label>
+      <span>{{ anime.synopsis | filtro: showFullText }}</span> 
+      <ion-label color="primary" (click)="toggleText()"> {{ showFullText ? 'Read Less' : 'Read More' }}</ion-label>
+    </ion-label>
+  </div>
+  
+    <div *ngIf="anime.personal" class="personal">
+      <ion-title style="margin-top:10px;" color="tertiary">Personal</ion-title>
+      <ion-chip class="star" color="{{anime.personal.personal_rating ? 'success' : 'danger'}}" >
+          <ion-label>{{ anime.personal.personal_rating ? (anime.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+          <ion-button style="margin-left:10px;" (click)="editRating(anime)" color="tertiary" expand="full">EDIT</ion-button>
+      </ion-chip>
+      <ion-chip class="star" [color]="getStateColor(anime.personal.state)" >
+          <ion-label>{{anime.personal.state}}</ion-label>
+          <ion-button style="margin-left:10px;" (click)="changeState()" color="tertiary" expand="full">CHANGE</ion-button>
+      </ion-chip>
+    </div>
+  <ion-button  expand="full" color="{{anime.isSaved ? 'danger' : 'success'}}" (click)="handleAnimeSave(anime, anime.isSaved)" >
+    <ion-label>{{anime.isSaved ? 'DELETE' : 'SAVE' }}</ion-label>
+    <ion-icon slot="end" name="{{anime.isSaved ? 'trash' : 'bookmark'}}"></ion-icon>
+  </ion-button>
+  
+</ion-content>

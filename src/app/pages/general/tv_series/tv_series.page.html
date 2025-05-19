@@ -1,0 +1,40 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Series</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search" (ngModel)="searchOnValue($event)" [debounce]="250"></ion-searchbar>
+    <ion-item lines="none">
+      <ion-button class="ion-padding" [disabled]="page <= 1" slot="start" (click)="prevPage()">
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        PREVIOUS
+      </ion-button>
+      <ion-button class="ion-padding" slot="end" (click)="nextPage()">
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        NEXT
+      </ion-button>  
+    </ion-item>
+    
+    <div class="grid">
+      <ion-title *ngIf="series.length == 0 || !isLoaded">Loading...</ion-title>
+      <ion-card (click)="detailSerie(serie)" button *ngFor="let serie of series; let page of pageSeries" class="card">
+  
+        <ion-img
+          class="image"
+          [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{serie.name}}">
+        </ion-img>
+        <ion-card-header>
+          <ion-label class="card-title">{{ serie.name ? serie.name : serie.name }}</ion-label>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </ion-content>
+</ion-content>

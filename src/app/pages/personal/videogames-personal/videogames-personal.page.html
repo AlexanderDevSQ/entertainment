@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My videogames</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-segment value="myvideogames" color="tertiary">
+    <ion-segment-button value="myvideogames" content-id="myvideogames">
+      <ion-label>My videogames</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="search" content-id="search">
+      <ion-label>Search videogames</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment-view>
+    <!-- { {# This is where the collections functionality will be implemented #}} -->
+    <ion-segment-content id="myvideogames">
+      <div class="grid">
+        <ion-title *ngIf="videogames.length == 0">No videogames found</ion-title>
+        <ion-card (click)="detailVideogame(videogame)" button *ngFor="let videogame of videogames;" class="card">
+          <ion-button expand="full" *ngIf="videogame.personal" [color]="getStateColor(videogame.personal.state)" class="ion-no-padding">
+            {{videogame.personal.state}}
+          </ion-button>
+          <ion-img
+          class="img"
+          [src]="videogame.background_image ? videogame.background_image : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{videogame.name}}">
+          </ion-img>
+          <ion-card-header>
+            <ion-label class="card-title">{{ videogame.name ? videogame.name : videogame.name }}</ion-label>
+          </ion-card-header>
+          <ion-button *ngIf="videogame.personal?.personal_rating == null" (click)="rateVideogame(videogame)" expand="full" color="tertiary" >
+            RATE IT!
+          </ion-button>
+          <div *ngIf="videogame.personal" class="personal">
+            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-chip class="star" color="{{videogame.personal.personal_rating ? 'success' : 'danger'}}" >
+                <ion-label>{{ videogame.personal.personal_rating ? (videogame.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+      </div>
+    </ion-segment-content>
+
+    <!-- { {# This is where the search functionality will be implemented #}} -->
+    <ion-segment-content id="search">
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchVideogames($event)" [debounce]="250"></ion-searchbar>
+      <ion-list>
+        @for (videogame of videogamesOnRequest; track videogame; let index = $index) {
+        <ion-item button (click)="detailVideogame(videogame)">
+          <ion-avatar slot="start">
+            <ion-img
+            [src]="videogame.background_image ? videogame.background_image : 'https://placehold.co/600x400?text=Image+Not+Found'"
+            alt="{{videogame.name}}">
+            </ion-img>
+          </ion-avatar>
+          <ion-label>{{ videogame.name }}</ion-label>
+        </ion-item>
+        }
+      </ion-list>
+      <ion-infinite-scroll 
+        position="bottom" 
+        (ionInfinite)="onInfiniteScroll($event)"
+        [disabled]="isInfiniteScrollDisabled">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-segment-content>
+  </ion-segment-view>
+  
+</ion-content>

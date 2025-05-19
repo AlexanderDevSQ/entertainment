@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{serie.name ? serie.name : serie.name}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content  class="ion-padding">
+  <div class="card">
+    <ion-card-title>{{serie.name}}</ion-card-title>
+    <div class="">
+      <ion-chip class="star" color="success" >
+        {{serie.vote_average ? (serie.vote_average | number: '1.0-1') +' / 10 ⭐' : 'No score'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip class="star" color="tertiary" >
+        {{serie.first_air_date ? (serie.first_air_date | date: 'dd/MM/yyyy') : 'No date'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip class="star" [color]="serie.first_air_date ? 'warning' : 'tertiary'" >
+        {{serie.first_air_date ? 'Airing' : 'Finished'}}
+      </ion-chip>
+    </div>
+    <div class="">
+      <ion-chip *ngFor="let genre of genreFromSeries" color="secondary">
+        <ion-label>{{genreFromSeries.length == 0 ? 'No genres' : genre}}</ion-label>
+      </ion-chip>
+    </div>
+    <ion-img
+          class="serie-image"
+          [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{serie.name}}">
+    </ion-img>
+    <div class="trailer">
+      <ion-label color="warning" (click)="watchTrailer('TODO TRAILER SETTINGS')"><u>Click here to see the Trailer </u>
+      </ion-label>
+      <ion-icon color="warning" slot="end" name="videocam"></ion-icon>
+    </div>
+    <ion-label>
+      <span>{{ serie.overview| filtro: showFullText }}</span> 
+      <ion-label color="primary" (click)="toggleText()"> {{ showFullText ? 'Read Less' : 'Read More' }}</ion-label>
+    </ion-label>
+  </div>
+  
+    <div *ngIf="serie.personal" class="personal">
+      <ion-title style="margin-top:10px;" color="tertiary">Personal</ion-title>
+      <ion-chip class="star" color="{{serie.personal.personal_rating ? 'success' : 'danger'}}" >
+          <ion-label>{{ serie.personal.personal_rating ? (serie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+          <ion-button style="margin-left:10px;" (click)="editRating(serie)" color="tertiary" expand="full">EDIT</ion-button>
+      </ion-chip>
+      <ion-chip class="star" [color]="getStateColor(serie.personal.state)" >
+          <ion-label>{{serie.personal.state}}</ion-label>
+          <ion-button style="margin-left:10px;" (click)="changeState()" color="tertiary" expand="full">CHANGE</ion-button>
+      </ion-chip>
+    </div>
+  <ion-button  expand="full" color="{{serie.isSaved ? 'danger' : 'success'}}" (click)="handleSerieSave(serie, serie.isSaved)" >
+    <ion-label>{{serie.isSaved ? 'DELETE' : 'SAVE' }}</ion-label>
+    <ion-icon slot="end" name="{{serie.isSaved ? 'trash' : 'bookmark'}}"></ion-icon>
+  </ion-button>
+  
+</ion-content>

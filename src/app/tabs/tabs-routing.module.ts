@@ -8,27 +8,35 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: 'tv-films',
+        loadChildren: () => import('../pages/general/tv_films/tv_films.module').then(m => m.TvFilmsModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'tv-series',
+        loadChildren: () => import('../pages/general/tv_series/tv_series.module').then(m => m.TvSeriesPageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'videogames',
+        loadChildren: () => import('../pages/general/videogames/videogames.module').then(m => m.VideogamesPageModule)
+      },
+      {
+        path: 'books',
+        loadChildren: () => import('../pages/general/books/books.module').then(m => m.BooksPageModule)
+      },
+      {
+        path: 'anime',
+        loadChildren: () => import('../pages/general/anime/anime.module').then(m => m.AnimePageModule)
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: 'tv-films',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/tv-films',
     pathMatch: 'full'
   }
 ];

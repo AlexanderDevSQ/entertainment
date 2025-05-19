@@ -1,0 +1,58 @@
+[
+    {
+        "title": "Profile",
+        "icon": "chevron-forward-outline",
+        "url": "",
+        "emoji": "👤",
+        "isOpen": false,
+        "subMenu": [
+            {
+                "title": "My collections",
+                "emoji": "📦",
+                "isOpen": false,
+                "icon": "chevron-forward-outline",
+                "subMenu": [
+                    {
+
+                        "title": "TV Shows",
+                        "icon": "chevron-forward-outline",
+                        "isOpen": false,
+                        "emoji": "📺",
+                        "subMenu": [
+                            {
+                                "title": "Movies",
+                                "url": "/movies-personal",
+                                "icon": "tv-outline"
+                            },
+                            {
+                                "title": "Series",
+                                "url": "/series-personal",
+                                "icon": "videocam-outline"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Videogames",
+                        "url": "/videogames-personal",
+                        "icon": "game-controller-outline",
+                        "emoji": "🎮"
+                    },
+                    {
+                        "title": "Animes",
+                        "icon": "language-outline",
+                        "emoji": "🉐",
+                        "url": "/anime-personal"
+                    },
+                    {
+                        "title": "Books",
+                        "url": "/books-personal",
+                        "icon": "book-outline",
+                        "emoji": "📚"
+                    }
+                ]
+                
+            }
+            
+        ]
+    }
+]

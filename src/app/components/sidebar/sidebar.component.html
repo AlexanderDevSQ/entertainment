@@ -1,0 +1,39 @@
+<ion-menu side="end" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Search Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-button expand="full" (click)="collapseAll()">Collapse All</ion-button>
+    <ion-list>
+      <ng-container *ngFor="let item of menus">
+        <ng-container *ngTemplateOutlet="renderItem; context: { $implicit: item }"></ng-container>
+      </ng-container>
+    </ion-list>
+    
+    <ng-template #renderItem let-item>
+      <ion-item button detail="false" (click)="goToLink(item)">
+        <ion-icon slot="start" [name]="item.isOpen ? 'chevron-down-outline' : item.icon"></ion-icon>
+        <ion-label>{{ item.emoji }} {{ item.title }}</ion-label>
+      </ion-item>
+    
+      <ion-list *ngIf="item.subMenu && item.isOpen" class="ml-4 ion-padding">
+        <ng-container *ngFor="let subItem of item.subMenu">
+          <ng-container *ngTemplateOutlet="renderItem; context: { $implicit: subItem }"></ng-container>
+        </ng-container>
+      </ion-list>
+    </ng-template>
+    
+
+  </ion-content>
+</ion-menu>
+<ion-content id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</ion-content>

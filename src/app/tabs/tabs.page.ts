@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { DataService } from '../services/data.service';
+import Tab from '../interfaces/Tab';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -6,8 +9,26 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss'],
   standalone: false,
 })
-export class TabsPage {
+export class TabsPage implements OnInit {
 
-  constructor() {}
+  tabs: Tab[] = [];
+  selectedTab: string = 'tv-shows';
+  constructor(
+    private dataService: DataService,
+    private router: Router
+  ) {}
+
+  ngOnInit() : void {
+    this.dataService.getTabs()
+      .subscribe((tabs: Tab[]) => {
+        this.tabs = tabs;
+      })
+  }
+
+  navigateTab(event: any) {
+    const url = '/tabs/' + event.detail.value;
+    this.router.navigate([url]);
+  }
+
 
 }

@@ -1,0 +1,33 @@
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  
+  .anime-card {
+    width: 160px;
+  }
+  
+  .anime-img {
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .card-title {
+    color:white;
+  }
+
+.sticky{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--ion-background-color);
+}
+
+.personal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}

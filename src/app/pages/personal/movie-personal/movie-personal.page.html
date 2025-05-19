@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Movies</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-segment value="myMovies" color="tertiary">
+    <ion-segment-button value="myMovies" content-id="myMovies">
+      <ion-label>My Movies</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="search" content-id="search">
+      <ion-label>Search movies</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment-view>
+    <!-- { {# This is where the collections functionality will be implemented #}} -->
+    <ion-segment-content id="myMovies">
+      <div class="grid">
+        <ion-title *ngIf="movies.length == 0">No movies found</ion-title>
+        <ion-card (click)="detailMovie(movie)" button *ngFor="let movie of movies;" class="card">
+          <ion-button expand="full" *ngIf="movie.personal" [color]="getStateColor(movie.personal.state)" class="ion-no-padding">
+            {{movie.personal.state}}
+          </ion-button>
+          <ion-img
+          class="img"
+          [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w200' + movie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{movie.title}}">
+          </ion-img>
+          <ion-card-header>
+            <ion-label class="card-title">{{ movie.title ? movie.title : movie.title }}</ion-label>
+          </ion-card-header>
+          <ion-button *ngIf="movie.personal?.personal_rating == null" (click)="rateMovie(movie)" expand="full" color="tertiary" >
+            RATE IT!
+          </ion-button>
+          <div *ngIf="movie.personal" class="personal">
+            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-chip class="star" color="{{movie.personal.personal_rating ? 'success' : 'danger'}}" >
+                <ion-label>{{ movie.personal.personal_rating ? (movie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+      </div>
+    </ion-segment-content>
+
+    <!-- { {# This is where the search functionality will be implemented #}} -->
+    <ion-segment-content id="search">
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchMovies($event)" [debounce]="250"></ion-searchbar>
+      <ion-list>
+        @for (movie of moviesOnRequest; track movie; let index = $index) {
+        <ion-item button (click)="detailMovie(movie)">
+          <ion-avatar slot="start">
+            <ion-img
+            [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+            alt="{{movie.title}}">
+            </ion-img>
+          </ion-avatar>
+          <ion-label>{{ movie.title }}</ion-label>
+        </ion-item>
+        }
+      </ion-list>
+      <ion-infinite-scroll 
+        position="bottom" 
+        (ionInfinite)="onInfiniteScroll($event)"
+        [disabled]="isInfiniteScrollDisabled">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-segment-content>
+  </ion-segment-view>
+  
+</ion-content>

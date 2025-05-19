@@ -1,0 +1,41 @@
+
+<ion-content>
+  <h1>VIDEOGAMES STILL ARE NOT TO DO, SO CORS ARE NOT ALLOWED, CHECK WITH THE PROJECT OF THE TFG</h1>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Videogames</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search" (ionChange)="searchVideogames($event)" [debounce]="250"></ion-searchbar>
+    <ion-item lines="none">
+      <ion-button class="ion-padding" [disabled]="page <= 1" slot="start" (click)="prevPage()">
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        PREVIOUS
+      </ion-button>
+      <ion-button class="ion-padding" slot="end" (click)="nextPage()">
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        NEXT
+      </ion-button>  
+    </ion-item>
+    
+    <div class="grid">
+      <ion-title *ngIf="videogames.length == 0 || !isLoaded">Loading...</ion-title>
+      <ion-card (click)="detailVideogame(videogame)" button *ngFor="let videogame of videogames; let page of pageVideogames" class="card">
+  
+        <ion-card-header>
+          <ion-label class="card-title">{{ videogame.name ? videogame.name : videogame.name }}</ion-label>
+        </ion-card-header>
+        <ion-img
+          class="image"
+          [src]="videogame.background_image ? videogame.background_image : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{videogame.name}}">
+        </ion-img>
+      </ion-card>
+    </div>
+  </ion-content>
+</ion-content>

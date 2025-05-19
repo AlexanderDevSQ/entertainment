@@ -1,0 +1,28 @@
+[
+    {
+        "title": "Movies",
+        "emoji": "🎥",
+        "url": "tv-films"
+    },
+    {
+        "title": "Series",
+        "emoji": "📺",
+        "url": "tv-series"
+    },
+    {
+        "title": "Videogames",
+        "emoji": "🎮",
+        "url": "videogames"
+    },
+    {
+        "title": "Books",
+        "emoji": "📚",
+        "url": "books"
+    },
+    {
+        "title": "Anime",
+        "emoji": "🉐",
+        "url": "anime"
+    }
+
+]

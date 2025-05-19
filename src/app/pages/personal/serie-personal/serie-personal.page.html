@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Series</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-segment value="mySeries" color="tertiary">
+    <ion-segment-button value="mySeries" content-id="mySeries">
+      <ion-label>My Series</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="search" content-id="search">
+      <ion-label>Search Series</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment-view>
+    <!-- { {# This is where the collections functionality will be implemented #}} -->
+    <ion-segment-content id="mySeries">
+      <div class="grid">
+        <ion-title *ngIf="series.length == 0">No series found</ion-title>
+        <ion-card (click)="detailSerie(serie)" button *ngFor="let serie of series;" class="card">
+          <ion-button expand="full" *ngIf="serie.personal" [color]="getStateColor(serie.personal.state)" class="ion-no-padding">
+            {{serie.personal.state}}
+          </ion-button>
+          <ion-img
+          class="img"
+          [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w200' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{serie.name}}">
+          </ion-img>
+          <ion-card-header>
+            <ion-label class="card-title">{{ serie.name ? serie.name : serie.name }}</ion-label>
+          </ion-card-header>
+          <ion-button *ngIf="serie.personal?.personal_rating == null" (click)="rateSerie(serie)" expand="full" color="tertiary" >
+            RATE IT!
+          </ion-button>
+          <div *ngIf="serie.personal" class="personal">
+            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-chip class="star" color="{{serie.personal.personal_rating ? 'success' : 'danger'}}" >
+                <ion-label>{{ serie.personal.personal_rating ? (serie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+      </div>
+    </ion-segment-content>
+
+    <!-- { {# This is where the search functionality will be implemented #}} -->
+    <ion-segment-content id="search">
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchSeries($event)" [debounce]="250"></ion-searchbar>
+      <ion-list>
+        @for (serie of seriesOnRequest; track serie; let index = $index) {
+        <ion-item button (click)="detailSerie(serie)">
+          <ion-avatar slot="start">
+            <ion-img
+            [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+            alt="{{serie.name}}">
+            </ion-img>
+          </ion-avatar>
+          <ion-label>{{ serie.name }}</ion-label>
+        </ion-item>
+        }
+      </ion-list>
+      <ion-infinite-scroll 
+        position="bottom" 
+        (ionInfinite)="onInfiniteScroll($event)"
+        [disabled]="isInfiniteScrollDisabled">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-segment-content>
+  </ion-segment-view>
+  
+</ion-content>

@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>My Animes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-down-outline"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-segment value="myAnimes" color="tertiary">
+    <ion-segment-button value="myAnimes" content-id="myAnimes">
+      <ion-label>My Animes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="search" content-id="search">
+      <ion-label>Search Animes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-segment-view>
+    <!-- { {# This is where the collections functionality will be implemented #}} -->
+    <ion-segment-content id="myAnimes">
+      <div class="anime-grid">
+        <ion-title *ngIf="animes.length == 0">No animes found</ion-title>
+        <ion-card (click)="detailAnime(anime)" button *ngFor="let anime of animes;" class="anime-card">
+          <ion-button expand="full" *ngIf="anime.personal" [color]="getStateColor(anime.personal.state)" class="ion-no-padding">
+            {{anime.personal.state}}
+          </ion-button>
+          <ion-img
+            class="anime-image"
+            [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
+            alt="{{anime.title_english}}">
+          </ion-img>
+          <ion-card-header>
+            <ion-label class="card-title">{{ anime.title_english ? anime.title_english : anime.title }}</ion-label>
+          </ion-card-header>
+          <ion-button *ngIf="anime.personal?.personal_rating == null" (click)="rateAnime(anime)" expand="full" color="tertiary" >
+            RATE IT!
+          </ion-button>
+          <div *ngIf="anime.personal" class="personal">
+            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-chip class="star" color="{{anime.personal.personal_rating ? 'success' : 'danger'}}" >
+                <ion-label>{{ anime.personal.personal_rating ? (anime.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+      </div>
+    </ion-segment-content>
+
+    <!-- { {# This is where the search functionality will be implemented #}} -->
+    <ion-segment-content id="search">
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchAnimes($event)" [debounce]="250"></ion-searchbar>
+      <ion-list>
+        @for (anime of animesOnRequest; track anime; let index = $index) {
+        <ion-item button (click)="detailAnime(anime)">
+          <ion-avatar slot="start">
+            <ion-img
+              [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
+              alt="{{anime.title_english}}">
+            </ion-img>
+          </ion-avatar>
+          <ion-label>{{ anime.title }}</ion-label>
+        </ion-item>
+        }
+      </ion-list>
+      <ion-infinite-scroll 
+        position="bottom" 
+        (ionInfinite)="onIonInfinite($event)"
+        [disabled]="isInfiniteScrollDisabled">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-segment-content>
+  </ion-segment-view>
+  
+</ion-content>

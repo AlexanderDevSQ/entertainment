@@ -1,0 +1,40 @@
+
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Anime</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search" (ionChange)="searchOnValue($event)" [debounce]="250"></ion-searchbar>
+    <ion-item lines="none">
+      <ion-button class="ion-padding" [disabled]="page <= 1" slot="start" (click)="prevPage()">
+        <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
+        PREVIOUS
+      </ion-button>
+      <ion-button class="ion-padding" slot="end" (click)="nextPage()">
+        <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
+        NEXT
+      </ion-button>  
+    </ion-item>
+    
+    <div class="anime-grid">
+      <ion-title *ngIf="animes.length == 0 || !isLoaded">Loading...</ion-title>
+      <ion-card (click)="detailAnime(anime)" button *ngFor="let anime of animes; let page of pageAnimes" class="anime-card">
+  
+        <ion-img
+          class="anime-image"
+          [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{anime.title_english}}">
+        </ion-img>
+        <ion-card-header>
+          <ion-label class="card-title">{{ anime.title_english ? anime.title_english : anime.title }}</ion-label>
+        </ion-card-header>
+      </ion-card>
+    </div>
+  </ion-content>
+</ion-content>
