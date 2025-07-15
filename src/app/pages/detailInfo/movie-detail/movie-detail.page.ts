@@ -40,9 +40,9 @@ export class MovieDetailPage  implements OnInit {
     this.getGenres();
   }
 
-  
+
   async getGenres() {
-    this.requestService.getGenresMovies().subscribe((response) => {
+    this.requestService.getGenresMovies().subscribe((response : any) => {
       this.genres = response.genres;
     });
   }
@@ -100,9 +100,9 @@ export class MovieDetailPage  implements OnInit {
       const modal = await this.modalController.create({
                 component: RateEntertainmentComponent,
               });
-            
+
               await modal.present();
-            
+
               const { data } = await modal.onWillDismiss();
               if (data) {
                 const rating = data.data;

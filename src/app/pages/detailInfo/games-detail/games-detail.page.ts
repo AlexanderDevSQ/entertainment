@@ -22,7 +22,7 @@ export class GamesDetailPage implements OnInit {
   genreFromGames: string[] = []
 
 
-  
+
   toggleText(){
     this.showFullText = !this.showFullText;
   }
@@ -100,9 +100,9 @@ export class GamesDetailPage implements OnInit {
     const modal = await this.modalController.create({
                     component: RateEntertainmentComponent,
                   });
-                
+
                   await modal.present();
-                
+
                   const { data } = await modal.onWillDismiss();
                   if (data) {
                     const rating = data.data;
