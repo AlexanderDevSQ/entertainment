@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "Witamy w Entertainment!",
+    "titleBack": "Witamy ponownie w Entertainment!",
+    "content": "Witam wszystkich, nazywam się Alexander i obecnie jestem początkującym deweloperem, stworzyłem tę aplikację dla wszystkich, abyście mogli śledzić wszystko, co oglądacie lub juegaz. Każda sugestia jest mile widziana!",
+    "thanks": "Dziękuję za pobranie mojej aplikacji i miłej zabawy! 💗💗",
+    "button": "ZAMKNIJ",
+    "moreInfoTitle": "💖 O mnie",
+    "moreInfoDescription": "Czy lubisz tę aplikację? Jeśli tak, proszę rozważ wsparcie moich prac przez udostępnienie jej swoim znajomym i rodzeństwu :D"
+  },
+  "generalNames": {
+    "previous": "Poprzedni",
+    "next": "Następny",
+    "search": "Szukaj",
+    "collapseAll": "Zwiń wszystko",
+    "expandAll": "Rozwiń wszystko",
+    "noResults": "Nie znaleziono wyników",
+    "loading": "Ładowanie...",
+    "readMore": "Czytaj więcej",
+    "readLess": "Czytaj mniej",
+    "change": "Zmień",
+    "delete": "Usuń",
+    "save": "Zapisz",
+    "edit": "Edytuj",
+    "loadMore": "Załaduj więcej"
+  },
+  "sidebar": {
+    "profile": "Profil",
+    "collections": "Moje kolekcje",
+    "tvShows": "Programy TV",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się",
+    "aboutMe": "O mnie"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Język",
+      "languageDescription": "Kliknij 'Zmień język', aby zmienić swój język",
+      "languageButton": "Zmień język"
+    }
+  },
+  "tabs": {
+    "movies": "Filmy",
+    "series": "Seriale",
+    "videogames": "Gry wideo",
+    "anime": "Anime",
+    "books": "Książki"
+  },
+  "rating": {
+    "rateTitle": "Oceń",
+    "rateClose": "Zamknij",
+    "rateSubtitle": "Oceń to rozrywkę od 1 do 10",
+    "rateSubmit": "Wyślij"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Szukaj filmów",
+      "searchSeries": "Szukaj seriali",
+      "searchVideogames": "Szukaj gier wideo",
+      "searchAnimes": "Szukaj anime",
+      "searchBook": "Szukaj książek"
+    },
+    "generalNames": {
+      "personal": "Osobiste",
+      "movies": "Moje filmy",
+      "series": "Moje seriale",
+      "videogames": "Moje gry wideo",
+      "animes": "Moje anime",
+      "books": "Moje książki",
+      "noRating": "Brak oceny",
+      "rateIt": "OCEN TO!",
+      "userRating": "Ocena użytkownika",
+      "trailerView": "Kliknij tutaj, aby zobaczyć zwiastun"
+    },
+    "status": {
+      "notStarted": "Nie rozpoczęto",
+      "watching": "Oglądane",
+      "completed": "Ukończono",
+      "onHold": "Wstrzymane",
+      "dropped": "Porzucone",
+      "airing": "Emitowane",
+      "finished": "Zakończone",
+      "noScore": "Brak wyniku",
+      "noDate": "Brak daty",
+      "noState": "Brak stanu",
+      "noRating": "Brak oceny"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Ocena przesłana pomyślnie",
+    "movieSubmitConfirm": "Film został pomyślnie dodany do twojej listy",
+    "seriesSubmitConfirm": "Serial został pomyślnie dodany do twojej listy",
+    "videogameSubmitConfirm": "Gra wideo została pomyślnie dodana do twojej listy",
+    "animeSubmitConfirm": "Anime zostało pomyślnie dodane do twojej listy",
+    "movieDeleteConfirm": "Film został pomyślnie usunięty z twojej listy",
+    "seriesDeleteConfirm": "Serial został pomyślnie usunięty z twojej listy",
+    "videogameDeleteConfirm": "Gra wideo została pomyślnie usunięta z twojej listy",
+    "animeDeleteConfirm": "Anime zostało pomyślnie usunięte z twojej listy",
+    "changeLanguage": "Język został zmieniony pomyślnie, proszę przeładować aplikację, aby zmiany zostały zastosowane"
+  },
+  "ios": {
+    "iosTitle": "Dlaczego nie jest dostępna w App Store?",
+    "iosDescription": "Nasz aplikacja nie jest dostępna w App Store ponieważ publikacja na nim wymaga wysokiego rocznych kosztów dla kont programistów. Dlatego, każda wkład jest mile widziany.",
+    "iosDownloadDescription": "Ponadto, możesz także pobrać i zainstalować aplikację bezpośrednio z tego miejsca!",
+    "iosDownloadHere": "Pobierz tutaj"
+  }
+}

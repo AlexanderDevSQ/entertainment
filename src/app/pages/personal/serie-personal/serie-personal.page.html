@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Series</ion-title>
+    <ion-title>{{'personal.generalNames.series' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs"></ion-back-button>
     </ion-buttons>
@@ -14,23 +14,23 @@
       refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-segment value="mySeries" color="tertiary">
-    <ion-segment-button value="mySeries" content-id="mySeries">
-      <ion-label>My Series</ion-label>
+  <ion-segment value="myseries" color="tertiary">
+    <ion-segment-button value="myseries" content-id="myseries">
+      <ion-label>{{'personal.generalNames.series' | translate}}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="search" content-id="search">
-      <ion-label>Search Series</ion-label>
+      <ion-label>{{'generalNames.search' | translate}}</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-segment-view>
     <!-- { {# This is where the collections functionality will be implemented #}} -->
-    <ion-segment-content id="mySeries">
+    <ion-segment-content id="myseries">
       <div class="grid">
-        <ion-title *ngIf="series.length == 0">No series found</ion-title>
+        <ion-title class="ion-padding text-center text-2xl text-pretty italic text-bold text-cyan-500" *ngIf="series.length == 0">{{'generalNames.noResults' | translate}}</ion-title>
         <ion-card (click)="detailSerie(serie)" button *ngFor="let serie of series;" class="card">
-          <ion-button expand="full" *ngIf="serie.personal" [color]="getStateColor(serie.personal.state)" class="ion-no-padding">
-            {{serie.personal.state}}
-          </ion-button>
+          <ion-title expand="full" *ngIf="serie.personal" [color]="getStateColor(serie.personal.state)" class="ion-padding text-center">
+            {{serie.personal.state? (serie.personal.state | translate) : 'personal.generalNames.noStatus' | translate}}
+          </ion-title>
           <ion-img
           class="img"
           [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w200' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
@@ -40,12 +40,12 @@
             <ion-label class="card-title">{{ serie.name ? serie.name : serie.name }}</ion-label>
           </ion-card-header>
           <ion-button *ngIf="serie.personal?.personal_rating == null" (click)="rateSerie(serie)" expand="full" color="tertiary" >
-            RATE IT!
+            {{'personal.generalNames.rateIt' | translate}}
           </ion-button>
           <div *ngIf="serie.personal" class="personal">
-            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-label style="margin-top:10px;" color="tertiary">{{'personal.generalNames.userRating' | translate}}</ion-label>
             <ion-chip class="star" color="{{serie.personal.personal_rating ? 'success' : 'danger'}}" >
-                <ion-label>{{ serie.personal.personal_rating ? (serie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+                <ion-label>{{ serie.personal.personal_rating ? (serie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'personal.generalNames.noRating' | translate }}</ion-label>
             </ion-chip>
           </div>
         </ion-card>
@@ -54,27 +54,24 @@
 
     <!-- { {# This is where the search functionality will be implemented #}} -->
     <ion-segment-content id="search">
-      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchSeries($event)" [debounce]="250"></ion-searchbar>
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="{{'personal.search.searchSeries' | translate}}" (ionChange)="searchSeries($event)" (ionCancel)="resetPage()" [debounce]="250"></ion-searchbar>
       <ion-list>
         @for (serie of seriesOnRequest; track serie; let index = $index) {
-        <ion-item button (click)="detailSerie(serie)">
-          <ion-avatar slot="start">
-            <ion-img
-            [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
-            alt="{{serie.name}}">
-            </ion-img>
-          </ion-avatar>
-          <ion-label>{{ serie.name }}</ion-label>
-        </ion-item>
+          <ion-item button (click)="detailSerie(serie)">
+            <ion-avatar slot="start">
+              <img
+              [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+              alt="{{serie.name}}">
+            </ion-avatar>
+            <ion-label>{{ serie.name }}</ion-label>
+          </ion-item>
         }
       </ion-list>
-      <ion-infinite-scroll 
-        position="bottom" 
-        (ionInfinite)="onInfiniteScroll($event)"
-        [disabled]="isInfiniteScrollDisabled">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+    <ion-title *ngIf="noResults && searchExpr != ''">{{'generalNames.noResults' | translate}}</ion-title>
+     <ion-button class="ion-margin" *ngIf="seriesOnRequest.length > 0" (click)="onInfiniteScroll()" [disabled]="noResults" expand="block" >
+        {{'generalNames.loadMore' | translate}}
+      </ion-button>
     </ion-segment-content>
   </ion-segment-view>
-  
+
 </ion-content>

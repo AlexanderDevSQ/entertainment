@@ -1,15 +1,43 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+
+
+:root.ios {
+  --ion-background-color: #0e0e0e;
+  --ion-toolbar-background: #0e0e0e;
+  --ion-tab-bar-background: #0e0e0e;
+  --ion-item-background:#0e0e0e;
+  --ion-card-background:rgb(17, 17, 17);
+  --fade-background-rgb	:#0e0e0e;
+
+
+}
+
+ion-picker{
+  background-color: #131313;
+}
+
+:root.md {
+  --ion-background-color: #0e0e0e;
+  --ion-toolbar-background: #0e0e0e;
+  --ion-tab-bar-background: #0e0e0e;
+  --ion-item-background:#0e0e0e;
+  --ion-card-background:rgb(17, 17, 17);
+  --fade-background-rgb	:#0e0e0e;
+
+
+
+}
 
  :root {
+  --ion-background-color: #0e0e0e;
+  --ion-font-family: 'Lato', sans-serif;
+
+
+
 	--ion-color-primary: #0054e9;
 	--ion-color-primary-rgb: 0,84,233;
 	--ion-color-primary-contrast: #ffffff;
@@ -72,8 +100,14 @@
 	--ion-color-dark-contrast: #ffffff;
 	--ion-color-dark-contrast-rgb: 255,255,255;
 	--ion-color-dark-shade: #292929;
-	--ion-color-dark-tint: #444444;
+	// --ion-color-dark-tint: #444444;
 
+
+}
+
+ion-toolbar, ion-header, .toolbar-container, .toolbar-background{
+  background-color: #070707;
+  background: #070707;
 }
 
 
@@ -98,6 +132,8 @@
  * For more info, please see:
  * https://ionicframework.com/docs/theming/dark-mode
  */
+
+
 
 @import "@ionic/angular/css/palettes/dark.always.css";
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */

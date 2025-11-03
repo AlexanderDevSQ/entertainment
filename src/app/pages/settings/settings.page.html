@@ -1,0 +1,32 @@
+
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'sidebar.settings' | translate}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item
+      *ngFor="let setting of settings">
+
+      <span *ngIf="setting.emoji" slot="start" class="setting-icon">{{ setting.emoji }}</span>
+      <ion-icon *ngIf="setting.icon" [name]="setting.icon" slot="start" color="primary"></ion-icon>
+
+      <ion-label>
+        <h2>{{ setting.title | translate }}</h2>
+        <p *ngIf="setting.description">{{ setting.description | translate }}</p>
+        <ion-button (click)="openModal(setting)" class="ion-padding" *ngIf="setting.type === 'modal'" expand="block">
+          {{setting.settingButton ? (setting.settingButton | translate) : ''}}
+        </ion-button>
+      </ion-label>
+
+
+    </ion-item>
+  </ion-list>
+</ion-content>

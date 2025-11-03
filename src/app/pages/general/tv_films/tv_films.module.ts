@@ -5,14 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { TvFilmsPage } from './tv_films';
 
 import { TvFilmsRoutingModule } from './tv_films-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    TvFilmsRoutingModule
+    TvFilmsRoutingModule,
+    TranslateModule
   ],
+
   declarations: [TvFilmsPage]
 })
 export class TvFilmsModule {}

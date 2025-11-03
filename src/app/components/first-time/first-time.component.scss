@@ -1,0 +1,8 @@
+.center-wrapper {
+  height: 100%;                /* fill available space */
+  display: flex;
+  flex-direction: column;                /* use flexbox */
+  justify-content: center;      /* horizontal center */
+  align-items: center;          /* vertical center */
+  text-align: center;           /* center text inside */
+}

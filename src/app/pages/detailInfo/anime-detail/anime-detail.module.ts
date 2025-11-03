@@ -8,6 +8,8 @@ import { AnimeDetailPageRoutingModule } from './anime-detail-routing.module';
 
 import { AnimeDetailPage } from './anime-detail.page';
 import { FiltroPipe } from "../../../pipes/filtro.pipe";
+import { TranslateModule } from '@ngx-translate/core';
+import { AutoTranslatePipe } from 'src/app/pipes/auto-translate.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { FiltroPipe } from "../../../pipes/filtro.pipe";
     FormsModule,
     IonicModule,
     AnimeDetailPageRoutingModule,
-    FiltroPipe
+    FiltroPipe,
+    TranslateModule,
+    AutoTranslatePipe,
 ],
   declarations: [AnimeDetailPage]
 })

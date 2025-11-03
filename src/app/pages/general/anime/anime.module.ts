@@ -9,6 +9,7 @@ import { AnimePageRoutingModule } from './anime-routing.module';
 import { AnimePage } from './anime.page';
 import { SidebarComponent } from 'src/app/components/sidebar/sidebar.component';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     AnimePageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule
   ],
   declarations: [AnimePage]
 })

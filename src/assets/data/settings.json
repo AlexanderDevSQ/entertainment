@@ -1,0 +1,11 @@
+[
+    {
+      "name": "language",
+      "title": "settings.language.languageTitle",
+      "value": "language",
+      "emoji": "🌐",
+      "description": "settings.language.languageDescription",
+      "type": "modal",
+      "settingButton": "settings.language.languageButton"
+    }
+]

@@ -30,6 +30,18 @@ const routes: Routes = [
     path: 'videogames-personal',
     loadChildren: () => import('./pages/personal/videogames-personal/videogames-personal.module').then( m => m.VideogamesPersonalPageModule)
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
+  },
+  {
+    path: 'ios',
+    loadChildren: () => import('./pages/ios/ios.module').then( m => m.IosPageModule)
+  },
 
 ];
 @NgModule({

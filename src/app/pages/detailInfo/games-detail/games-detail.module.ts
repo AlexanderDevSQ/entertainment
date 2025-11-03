@@ -8,6 +8,8 @@ import { GamesDetailPageRoutingModule } from './games-detail-routing.module';
 
 import { GamesDetailPage } from './games-detail.page';
 import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
+import { TranslateModule } from '@ngx-translate/core';
+import { AutoTranslatePipe } from 'src/app/pipes/auto-translate.pipe';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
     FormsModule,
     IonicModule,
     GamesDetailPageRoutingModule,
-    FiltroPipe
+    FiltroPipe,
+    TranslateModule,
+    AutoTranslatePipe,
   ],
   declarations: [GamesDetailPage]
 })

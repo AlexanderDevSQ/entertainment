@@ -1,0 +1,108 @@
+{
+  "modalInit": {
+    "title": "Welcome to Entertainment!",
+    "titleBack": "Welcome back to Entertainment!",
+    "content": "Hello, I am Alexander. I am a beginner developer. I developed this application to keep track of everything I watch or play. Any suggestions are welcome!",
+    "thanks": "Thank you for downloading my app and enjoy it! 💗💗",
+    "button": "CLOSE",
+    "moreInfoTitle": "💖 Support My Work",
+    "moreInfoDescription": "If you enjoy this application, please consider supporting my work by sharing it with your friends and family :D"
+  },
+  "generalNames": {
+    "previous": "Previous",
+    "next": "Next",
+    "search": "Search",
+    "collapseAll": "Collapse all",
+    "expandAll": "Expand all",
+    "noResults": "No results found",
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "readLess": "Read Less",
+    "change": "Change",
+    "delete": "Delete",
+    "save": "Save",
+    "edit": "Edit",
+    "loadMore": "Load More"
+  },
+  "sidebar": {
+    "profile": "Profile",
+    "collections": "My Collections",
+    "tvShows": "TV Shows",
+    "settings": "Settings",
+    "logout": "Logout",
+    "aboutMe": "About me"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Language",
+      "languageDescription": "Click on 'Change Language' to change your language",
+      "languageButton": "Change Language"
+    }
+  },
+  "tabs": {
+    "movies": "Movies",
+    "series": "Series",
+    "videogames": "Videogames",
+    "anime": "Animes",
+    "books": "Books"
+  },
+  "rating": {
+    "rateTitle": "Rate",
+    "rateClose": "Close",
+    "rateSubtitle": "Rate this entertainment from 1 to 10",
+    "rateSubmit": "Submit"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Search Movies",
+      "searchSeries": "Search Series",
+      "searchVideogames": "Search Videogames",
+      "searchAnimes": "Search Animes",
+      "searchBook": "Search Books"
+    },
+    "generalNames": {
+      "personal": "Personal",
+      "movies": "My Movies",
+      "series": "My Series",
+      "videogames": "My Videogames",
+      "animes": "My Animes",
+      "books": "My Books",
+      "noRating": "No rating yet",
+      "rateIt": "RATE IT!",
+      "userRating": "User Rating",
+      "trailerView": "Click here to see the trailer"
+    },
+    "status": {
+      "notStarted": "Not Started",
+      "watching": "Watching",
+      "completed": "Completed",
+      "onHold": "On Hold",
+      "dropped": "Dropped",
+      "airing": "Airing",
+      "finished": "Finished",
+      "noScore": "No Score",
+      "noDate": "No Date",
+      "noState": "No State",
+      "noRating": "No rating yet"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Rating submitted succesfully",
+    "movieSubmitConfirm": "Movie added succesfully to your list",
+    "seriesSubmitConfirm": "Series added succesfully to your list",
+    "videogameSubmitConfirm": "Videogame added succesfully to your list",
+    "animeSubmitConfirm": "Anime added succesfully to your list",
+    "movieDeleteConfirm": "Movie deleted succesfully from your list",
+    "seriesDeleteConfirm": "Series deleted succesfully from your list",
+    "videogameDeleteConfirm": "Videogame deleted succesfully from your list",
+    "animeDeleteConfirm": "Anime deleted succesfully from your list",
+    "languageSubmit": "Language changed succesfully",
+    "changeLanguage": "Language changed succesfully, please reload the application for the changes to apply"
+  },
+  "ios": {
+    "iosTitle": "Why is it not available for the App Store?",
+    "iosDescription": "Our app isn’t available on the App Store because publishing there requires a high annual fee for developer accounts, Thefore, we welcome all contributions.",
+    "iosDownloadDescription": "However, you can still download and install the app directly from here!",
+    "iosDownloadHere": "Download Here"
+  }
+}

@@ -11,13 +11,21 @@ const routes: Routes = [
     loadChildren: () => import('../serie-personal/serie-personal.module').then(m => m.SeriePersonalPageModule)
   },
   {
-    path: 'movies-personal', 
+    path: 'movies-personal',
     loadChildren: () => import('../movie-personal/movie-personal.module').then(m => m.MoviePersonalPageModule)
   },
   {
     path: 'videogames-personal',
     loadChildren: () => import('../videogames-personal/videogames-personal.module').then(m => m.VideogamesPersonalPageModule)
-  }
+  },
+  {
+    path: 'about',
+    loadChildren: () => import('../../about/about.module').then(m => m.AboutPageModule)
+  },
+  {
+    path: 'ios',
+    loadChildren: () => import('../../ios/ios.module').then(m => m.IosPageModule)
+  },
 ];
 
 @NgModule({

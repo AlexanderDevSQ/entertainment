@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { map } from 'rxjs';
+import { LoadingController, NavController } from '@ionic/angular';
+import { filter, map } from 'rxjs';
 import { Movie } from 'src/app/interfaces/Movie';
 import { RequestsService } from 'src/app/services/requests.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 @Component({
@@ -19,15 +20,30 @@ export class TvFilmsPage {
   loadedPages: Set<number> = new Set();
   isLoaded: boolean = false;
   searchExpr : string = '';
+  noResponse : boolean = false;
 
   constructor(
     private requestService : RequestsService,
-    private navController: NavController
+    private navController: NavController,
+    private loadingController: LoadingController,
+    private storageService: StorageService
   ) {}
 
-  filterMovies ( searchTerm : string ) {
+  ionViewDidLeave	(){
+    this.searchExpr = ''
+    this.loadMovies();
+    this.noResponse = false;
+    this.page = 1
+  }
+
+
+
+  async filterMovies ( searchTerm : string ) {
+    this.noResponse = false
+    this.movies = [];
     const searchExpr = searchTerm.toLowerCase().toString();
-    
+
+
     if (!searchExpr) {
       this.movies = this.originalMovies;
       this.searchExpr = '';
@@ -38,40 +54,49 @@ export class TvFilmsPage {
     this.loadedPages.clear();
 
     this.requestService.getMoviesBySearch(this.searchExpr, this.page)
-      .subscribe((response) => {
-        this.movies = [...response.results];
-        this.page++;
+      .subscribe(async (response) => {
+        if ( response.results.length == 0) {
+          this.noResponse = true;
+          return;
+        }
+        this.movies = response.results;
       });
   }
 
   searchOnValue( event : any ) {
+    this.page = 1;
     const value = event.target.value || '';
     this.filterMovies(value);
   }
 
   async loadMovies ( ) {
-    if (this.searchExpr == '') {
-      if (this.loadedPages.has(this.page)) return;
+
 
       this.isLoaded = false;
+
+      const loading = await this.loadingController.create({
+      });
+
+      loading.present();
 
       this.requestService.getTopMovies(this.page)
         .pipe(
           map((response => {
+            console.log(response)
+            if ( response.results.length == 0) {
+              this.noResponse = true;
+            }
             const movies = response.results;
             return movies.filter((movie, index, self) =>
               index === self.findIndex(m => m.id == movie.id));
           }))
-        ).subscribe((filteredMovies) => {
-          this.movies = [...this.movies, ...filteredMovies];
-          this.originalMovies = [...this.movies];
+        ).subscribe(async (filteredMovies) => {
+          this.movies = filteredMovies;
+          this.originalMovies = this.movies;
           this.loadedPages.add(this.page);
           this.isLoaded = true;
+          loading.dismiss();
         });
-
-    } else {
-      this.filterMovies(this.searchExpr);
-    }
   }
 
   async ngOnInit(): Promise<void> {
@@ -80,18 +105,36 @@ export class TvFilmsPage {
 
 
   nextPage() {
+    this.noResponse = false;
+    this.movies = [];
     this.page++;
-    this.loadMovies();
+    if (this.searchExpr != '') {
+      this.filterMovies(this.searchExpr);
+    } else {
+      this.loadMovies();
+    }
   }
   prevPage() {
-    if (this.page > 1 ) {
-      this.page--;
+    this.noResponse = false;
+    this.movies = [];
+    this.page--;
+    if (this.searchExpr != '') {
+      this.filterMovies(this.searchExpr);
+    } else {
       this.loadMovies();
     }
   }
 
+  resetPage() {
+    this.noResponse = false;
+    this.movies = [];
+    this.page = 1;
+    this.loadMovies();
+    this.searchExpr = '';
+  }
+
   get pageMovies () {
-    const pageSize = 25;
+    const pageSize = 10;
     const start = (this.page - 1) * pageSize;
     return this.movies.slice(start, start + pageSize);
   }

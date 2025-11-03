@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "¡Bienvenido a Entretenimiento!",
+    "titleBack": "¡Bienvenido de nuevo a Entretenimiento!",
+    "content": "Hola a todos, mi nombre es Alexander y actualmente soy un desarrollador principiante. Desarrollé este aplicación para que todos puedan llevar un registro de todo lo que ven o juegan. ¡Cualquier sugerencia es bienvenida!",
+    "thanks": "¡Gracias por descargar mi aplicación y disfrútala! 💗💗",
+    "button": "CERRAR",
+    "moreInfoTitle": "💖 Contribuye a mi trabajo",
+    "moreInfoDescription": "Si disfrutas esta aplicación agredecería que la compartieras con tus amigos y conocidos para darme a conocer :D "
+  },
+  "generalNames": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "collapseAll": "Colapsar todo",
+    "expandAll": "Expandir todo",
+    "search": "Buscar",
+    "noResults": "No se encontraron resultados",
+    "loading": "Cargando...",
+    "readMore": "Leer más",
+    "readLess": "Leer menos",
+    "change": "Cambiar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "loadMore": "Cargar más"
+  },
+  "sidebar": {
+    "profile": "Perfil",
+    "collections": "Mis Colecciones",
+    "tvShows": "Programas de TV",
+    "settings": "Configuración",
+    "logout": "Cerrar sesión",
+    "aboutMe": "Acerca de mí"
+  },
+  "tabs": {
+    "movies": "Peliculas",
+    "series": "Series",
+    "videogames": "Videojuegos",
+    "anime": "Animes",
+    "books": "Libros"
+  },
+  "rating": {
+    "rateTitle": "Calificar",
+    "rateClose": "Cerrar",
+    "rateSubtitle": "Califica este entretenimiento del 1 al 10",
+    "rateSubmit": "Enviar"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Idioma",
+      "languageDescription": "Haz clic en 'Cambiar Idioma' para cambiar tu idioma",
+      "languageButton": "Cambiar Idioma"
+    }
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Buscar Películas",
+      "searchSeries": "Buscar Series",
+      "searchVideogames": "Buscar Videojuegos",
+      "searchAnimes": "Buscar Animes",
+      "searchBook": "Buscar Libros"
+    },
+    "generalNames": {
+      "personal": "Personal",
+      "movies": "Mis Películas",
+      "series": "Mis Series",
+      "videogames": "Mis Videojuegos",
+      "animes": "Mis Animes",
+      "books": "Mis Libros",
+      "noRating": "Aún sin calificación",
+      "rateIt": "¡CALIFÍCALO!",
+      "userRating": "Calificación del usuario",
+      "trailerView": "Haz clic aquí para ver el tráiler"
+    },
+    "status": {
+      "notStarted": "No Iniciado",
+      "watching": "Viendo",
+      "completed": "Completado",
+      "onHold": "En Pausa",
+      "dropped": "Abandonado",
+      "airing": "En emisión",
+      "finished": "Finalizado",
+      "noScore": "Sin puntuación",
+      "noDate": "Sin fecha",
+      "noState": "Sin estado",
+      "noRating": "Aún sin calificación"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Calificación enviada correctamente",
+    "movieSubmitConfirm": "Película añadida correctamente a tu lista",
+    "seriesSubmitConfirm": "Serie añadida correctamente a tu lista",
+    "videogameSubmitConfirm": "Videojuego añadido correctamente a tu lista",
+    "animeSubmitConfirm": "Anime añadido correctamente a tu lista",
+    "movieDeleteConfirm": "Película eliminada correctamente de tu lista",
+    "seriesDeleteConfirm": "Serie eliminada correctamente de tu lista",
+    "videogameDeleteConfirm": "Videojuego eliminado correctamente de tu lista",
+    "animeDeleteConfirm": "Anime eliminado correctamente de tu lista",
+    "changeLanguage": "Idioma cambiado con éxito, por favor, recargue la aplicación para que los cambios se apliquen"
+  },
+  "ios": {
+    "iosTitle": "Por qué no está disponible en la App Store?",
+    "iosDescription": "Nuestra app no está disponible en la App Store porque publicar allí requiere un alto costo anual para cuentas de desarrolladores, es por ello, que toda contribución es bienvenida.",
+    "iosDownloadDescription": "Igualmente, puedes descargar e instalar la app directamente desde aquí!",
+    "iosDownloadHere": "Descargar Aquí"
+  }
+}

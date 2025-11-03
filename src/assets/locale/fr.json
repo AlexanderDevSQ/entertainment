@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "Bienvenue dans Entertainment !",
+    "titleBack": "Bon retour dans Entertainment !",
+    "content": "Bonjour, je m'appelle Alexander. Je suis un développeur débutant. J'ai développé cette application pour que tous puissent suivre tout ce qui se passe. Toute suggestion est la bienvenue!",
+    "thanks": "Merci d’avoir téléchargé mon application et profitez-en bien ! 💗💗",
+    "button": "FERMER",
+    "moreInfoTitle": "💖 Aidez-Moi à Faire de la Bienvenue",
+    "moreInfoDescription": "Si vous aimez cette application, veuillez considérer de soutenir mon travail en la partageant avec vos amis et vos proches :D"
+  },
+  "generalNames": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "search": "Rechercher",
+    "collapseAll": "Tout réduire",
+    "expandAll": "Tout développer",
+    "noResults": "Aucun résultat trouvé",
+    "loading": "Chargement...",
+    "readMore": "Lire la suite",
+    "readLess": "Lire moins",
+    "change": "Changer",
+    "delete": "Supprimer",
+    "save": "Sauvegarder",
+    "edit": "Modifier",
+    "loadMore": "Charger plus"
+  },
+  "sidebar": {
+    "profile": "Profil",
+    "collections": "Mes Collections",
+    "tvShows": "Télé-séries",
+    "settings": "Paramètres",
+    "logout": "Déconnexion",
+    "aboutMe": "À propos de moi"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Langue",
+      "languageDescription": "Cliquez sur « Changer la langue » pour modifier votre langue",
+      "languageButton": "Changer de langue"
+    }
+  },
+  "tabs": {
+    "movies": "Films",
+    "series": "Séries",
+    "videogames": "Jeux vidéo",
+    "anime": "Animés",
+    "books": "Livres"
+  },
+  "rating": {
+    "rateTitle": "Noter",
+    "rateClose": "Fermer",
+    "rateSubtitle": "Notez ce divertissement de 1 à 10",
+    "rateSubmit": "Soumettre"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Rechercher des films",
+      "searchSeries": "Rechercher des séries",
+      "searchVideogames": "Rechercher des jeux vidéo",
+      "searchAnimes": "Rechercher des animés",
+      "searchBook": "Rechercher des livres"
+    },
+    "generalNames": {
+      "personal": "Personnel",
+      "movies": "Mes Films",
+      "series": "Mes Séries",
+      "videogames": "Mes Jeux vidéo",
+      "animes": "Mes Animés",
+      "books": "Mes Livres",
+      "noRating": "Pas encore de note",
+      "rateIt": "NOTE-LE !",
+      "userRating": "Note de l’utilisateur",
+      "trailerView": "Cliquez ici pour voir la bande-annonce"
+    },
+    "status": {
+      "notStarted": "Pas commencé",
+      "watching": "En cours",
+      "completed": "Terminé",
+      "onHold": "En attente",
+      "dropped": "Abandonné",
+      "airing": "Diffusé",
+      "finished": "Fini",
+      "noScore": "Pas de score",
+      "noDate": "Pas de date",
+      "noState": "Pas d’état",
+      "noRating": "Pas encore de note"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Note soumise avec succès",
+    "movieSubmitConfirm": "Film ajouté avec succès à votre liste",
+    "seriesSubmitConfirm": "Série ajoutée avec succès à votre liste",
+    "videogameSubmitConfirm": "Jeu vidéo ajouté avec succès à votre liste",
+    "animeSubmitConfirm": "Animé ajouté avec succès à votre liste",
+    "movieDeleteConfirm": "Film supprimé avec succès de votre liste",
+    "seriesDeleteConfirm": "Série supprimée avec succès de votre liste",
+    "videogameDeleteConfirm": "Jeu vidéo supprimé avec succès de votre liste",
+    "animeDeleteConfirm": "Animé supprimé avec succès de votre liste",
+    "changeLanguage": "Langue changée avec succès, veuillez recharger l'application pour que les changements prennent effet"
+  },
+  "ios": {
+    "iosTitle": "Pourquoi n'est-il pas disponible sur l'App Store?",
+    "iosDescription": "Notre application n'est pas disponible sur l'App Store car la publication sur ce dernier nécessite une frais annuel élevé pour les comptes développeurs. Par conséquent, toutes les contributions sont bienvenues.",
+    "iosDownloadDescription": "Aussi, vous pouvez télécharger et installer l'application directement ici!",
+    "iosDownloadHere": "Téléchargez ici"
+  }
+}

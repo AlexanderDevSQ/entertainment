@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { RateEntertainmentComponent } from 'src/app/components/rate-entertainment/rate-entertainment.component';
 import { Genre, Serie } from 'src/app/interfaces/Serie';
 import { NotificationsService } from 'src/app/services/notifications.service';
@@ -17,9 +18,10 @@ export class SeriesDetailPage implements OnInit {
 
   serie!: Serie;
   showFullText: boolean = false;
-  availableStates: string[] = ['Not Started', 'Watching', 'Completed', 'On Hold', 'Dropped'];
+  availableStates: string[] = ['personal.status.notStarted', 'personal.status.watching', 'personal.status.completed', 'personal.status.onHold', 'personal.status.dropped'];
   genres: Genre[] = [];
   genreFromSeries: string[] = [];
+
 
   toggleText() {
     this.showFullText = !this.showFullText;
@@ -31,16 +33,21 @@ export class SeriesDetailPage implements OnInit {
     private seriesService: SeriesService,
     private notificationService: NotificationsService,
     private modalController: ModalController,
+    private translateService: TranslateService
   ) { }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     this.serie = navigation?.extras.state?.['serie'];
     this.getGenres();
+    this.seriesService.getSerie(this.serie.id.toString()).then(serie => {
+      if (serie) {
+        this.serie = serie;
+      }
+    });
   }
 
   watchTrailer( url : string | null ) {
-    window.open(url!, '_blank');
   }
 
   handleSerieSave( serie: Serie, isSaved: boolean | undefined ) {
@@ -48,27 +55,27 @@ export class SeriesDetailPage implements OnInit {
       this.seriesService.removeSerie(serie.id.toString());
       this.serie.personal = undefined;
       this.serie.isSaved = false;
-      this.notificationService.displayNotification('Serie removed successfully from your list', 2000, 'top', 'alert-circle-outline', 'danger');
+      this.notificationService.displayNotification(this.translateService.instant('modals.seriesDeleteConfirm'), 2000, 'top', 'alert-circle-outline', 'danger');
       return;
     }
     this.serie.isSaved = true;
-    this.serie.personal = { personal_rating: null, state: 'Not Started' };
+    this.serie.personal = { personal_rating: null, state: 'personal.status.notStarted' };
     this.seriesService.addSerie(serie);
-    this.notificationService.displayNotification('Serie added successfully to your list', 2000, 'top', 'checkmark-circle-outline', 'success');
+    this.notificationService.displayNotification(this.translateService.instant('modals.seriesSubmitConfirm'), 2000, 'top', 'checkmark-circle-outline', 'success');
   }
 
   getStateColor(state: string | undefined): string {
     switch (state) {
-      case 'Not Started':
+      case 'personal.status.notStarted':
         return 'danger';
-      case 'Watching':
+      case 'personal.status.watching':
         return 'warning';
-      case 'Completed':
+      case 'personal.status.completed':
         return 'success';
-      case 'On Hold':
+      case 'personal.status.onHold':
         return 'tertiary';
-      case 'Dropped':
-        return 'danger';
+      case 'personal.status.dropped':
+        return 'medium';
       default:
         return 'medium';
     }
@@ -76,7 +83,7 @@ export class SeriesDetailPage implements OnInit {
 
   changeState() {
     if (this.serie.personal) {
-      const currentIndex = this.availableStates.indexOf(this.serie.personal.state || 'Not Started');
+      const currentIndex = this.availableStates.indexOf(this.serie.personal.state || 'personal.status.notStarted');
       const nextIndex = (currentIndex + 1) % this.availableStates.length;
       const nextState = this.availableStates[nextIndex];
       this.serie.personal.state = nextState;
@@ -92,9 +99,9 @@ export class SeriesDetailPage implements OnInit {
     const modal = await this.modalController.create({
               component: RateEntertainmentComponent,
             });
-          
+
             await modal.present();
-          
+
             const { data } = await modal.onWillDismiss();
             if (data) {
               const rating = data.data;

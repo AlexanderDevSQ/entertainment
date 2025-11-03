@@ -8,6 +8,7 @@ import { SeriesDetailPageRoutingModule } from './series-detail-routing.module';
 
 import { SeriesDetailPage } from './series-detail.page';
 import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
     FormsModule,
     IonicModule,
     SeriesDetailPageRoutingModule,
-    FiltroPipe
+    FiltroPipe,
+    TranslateModule
   ],
   declarations: [SeriesDetailPage]
 })

@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding text-2xl">
+  <div class="ion-text-center justify-center items-center flex flex-col gap-4">
+    <h2>{{'ios.iosTitle' | translate}}</h2>
+    <img src="../../../assets/img/iosImg.png" alt="iOS App" style="max-width: 250px; margin: 20px auto;" />
+    <p>
+      {{'ios.iosDescription' | translate}}
+    </p>
+    <p>
+      {{'ios.iosDownloadDescription' | translate}}
+    </p>
+    <ion-button class="ion-padding flex flex-col gap-2  text-white rounded-full items-center justify-center" >
+        {{'ios.iosDownloadHere' | translate}}
+    </ion-button>
+  </div>
+</ion-content>

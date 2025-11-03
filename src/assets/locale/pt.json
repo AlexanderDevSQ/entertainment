@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "Bem-vindo ao Entertainment!",
+    "titleBack": "Bem-vindo de volta ao Entertainment!",
+    "content": "Olá, eu sou Alexander. Eu sou um desenvolvedor iniciante. Eu desenvolvi esta aplicação para que todos possam acompanhar tudo o que veem ou jogam. Qualquer sugestão é bem-vinda!",
+    "thanks": "Obrigado por baixar meu app e aproveite! 💗💗",
+    "button": "FECHAR",
+    "moreInfoTitle": "💖 Apoie Minha Trabalho",
+    "moreInfoDescription": "Se você gosta dessa aplicação, por favor, considere apoiar meu trabalho compartilhando-a com seus amigos e familiares :D"
+  },
+  "generalNames": {
+    "previous": "Anterior",
+    "next": "Próximo",
+    "search": "Pesquisar",
+    "collapseAll": "Recolher tudo",
+    "expandAll": "Expandir tudo",
+    "noResults": "Nenhum resultado encontrado",
+    "loading": "Carregando...",
+    "readMore": "Leia mais",
+    "readLess": "Leia menos",
+    "change": "Mudar",
+    "delete": "Excluir",
+    "save": "Salvar",
+    "edit": "Editar",
+    "loadMore": "Carregar mais"
+  },
+  "sidebar": {
+    "profile": "Perfil",
+    "collections": "Minhas Coleções",
+    "tvShows": "Séries de TV",
+    "settings": "Configurações",
+    "logout": "Sair",
+    "aboutMe": "Sobre mim"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Idioma",
+      "languageDescription": "Clique em 'Mudar Idioma' para alterar seu idioma",
+      "languageButton": "Mudar Idioma"
+    }
+  },
+  "tabs": {
+    "movies": "Filmes",
+    "series": "Séries",
+    "videogames": "Videogames",
+    "anime": "Animes",
+    "books": "Livros"
+  },
+  "rating": {
+    "rateTitle": "Avaliar",
+    "rateClose": "Fechar",
+    "rateSubtitle": "Avalie este entretenimento de 1 a 10",
+    "rateSubmit": "Enviar"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Pesquisar Filmes",
+      "searchSeries": "Pesquisar Séries",
+      "searchVideogames": "Pesquisar Videogames",
+      "searchAnimes": "Pesquisar Animes",
+      "searchBook": "Pesquisar Livros"
+    },
+    "generalNames": {
+      "personal": "Pessoal",
+      "movies": "Meus Filmes",
+      "series": "Minhas Séries",
+      "videogames": "Meus Videogames",
+      "animes": "Meus Animes",
+      "books": "Meus Livros",
+      "noRating": "Ainda sem avaliação",
+      "rateIt": "AVALIE!",
+      "userRating": "Avaliação do usuário",
+      "trailerView": "Clique aqui para ver o trailer"
+    },
+    "status": {
+      "notStarted": "Não iniciado",
+      "watching": "Assistindo",
+      "completed": "Concluído",
+      "onHold": "Em espera",
+      "dropped": "Abandonado",
+      "airing": "Transmitido",
+      "finished": "Finalizado",
+      "noScore": "Sem pontuação",
+      "noDate": "Sem data",
+      "noState": "Sem estado",
+      "noRating": "Ainda sem avaliação"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Avaliação enviada com sucesso",
+    "movieSubmitConfirm": "Filme adicionado com sucesso à sua lista",
+    "seriesSubmitConfirm": "Série adicionada com sucesso à sua lista",
+    "videogameSubmitConfirm": "Videogame adicionado com sucesso à sua lista",
+    "animeSubmitConfirm": "Anime adicionado com sucesso à sua lista",
+    "movieDeleteConfirm": "Filme removido com sucesso da sua lista",
+    "seriesDeleteConfirm": "Série removida com sucesso da sua lista",
+    "videogameDeleteConfirm": "Videogame removido com sucesso da sua lista",
+    "animeDeleteConfirm": "Anime removido com sucesso da sua lista",
+    "changeLanguage": "Idioma alterado com sucesso, por favor, recarregue a aplicação para que as alterações sejam aplicadas"
+  },
+  "ios": {
+    "iosTitle": "Porque não está disponível no App Store?",
+    "iosDescription": "Nossa app não está disponível no App Store porque a publicação nele requer uma alta taxa anual para contas de desenvolvedores. Portanto, todas as contribuições são bem-vindas.",
+    "iosDownloadDescription": "Ainda, você pode baixar e instalar a app diretamente aqui!",
+    "iosDownloadHere": "Baixe aqui"
+  }
+}

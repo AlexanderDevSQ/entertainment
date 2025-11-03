@@ -1,31 +1,30 @@
 
-<ion-content>
-  <ion-header>
-    <ion-toolbar>
+    <ion-header>
+    <ion-toolbar class="bg-black flex justify-end items-center border-b-2 border-b-gray-900 ">
+          <img class="ion-padding h-4/12 w-4/12" src="assets/img/logo.png" alt="entertainment" />
       <ion-buttons slot="end">
-        <ion-menu-button></ion-menu-button>
+          <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Series</ion-title>
     </ion-toolbar>
   </ion-header>
-  
   <ion-content class="ion-padding">
-    <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search" (ngModel)="searchOnValue($event)" [debounce]="250"></ion-searchbar>
-    <ion-item lines="none">
+    <ion-title class="ion-padding text-center text-2xl font-bold">{{'tabs.series' | translate}}</ion-title>
+    <ion-searchbar [(ngModel)]="searchExpr" class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="{{'generalNames.search' | translate}}" (ionCancel)="resetPage()" (ionInput)="searchOnValue($event)"></ion-searchbar>
+    <div class="flex justify-between items-center">
       <ion-button class="ion-padding" [disabled]="page <= 1" slot="start" (click)="prevPage()">
         <ion-icon slot="start" name="chevron-back-outline"></ion-icon>
-        PREVIOUS
+        {{'generalNames.previous' | translate}}
       </ion-button>
-      <ion-button class="ion-padding" slot="end" (click)="nextPage()">
+      <ion-button [disabled]="noResponse" class="ion-padding" slot="end" (click)="nextPage()">
         <ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-        NEXT
-      </ion-button>  
-    </ion-item>
-    
+        {{'generalNames.next' | translate}}
+      </ion-button>
+    </div>
+
     <div class="grid">
-      <ion-title *ngIf="series.length == 0 || !isLoaded">Loading...</ion-title>
-      <ion-card (click)="detailSerie(serie)" button *ngFor="let serie of series; let page of pageSeries" class="card">
-  
+      <h1 *ngIf="noResponse">{{'generalNames.noResults' | translate}}</h1>
+      <ion-card (click)="detailSerie(serie)" button *ngFor="let serie of series;" class="card">
+
         <ion-img
           class="image"
           [src]="serie.poster_path ? 'https://image.tmdb.org/t/p/w500' + serie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
@@ -37,4 +36,3 @@
       </ion-card>
     </div>
   </ion-content>
-</ion-content>

@@ -2,14 +2,15 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { NotificationsService } from 'src/app/services/notifications.service';
-import { AnimeService } from 'src/app/services/storage-data/anime.service';
+import { ComponentsModule } from '../components.module';
+import { TranslateService } from '@ngx-translate/core';
+import { AnimeService } from 'src/app/services/anime.service';
 
 @Component({
   selector: 'app-rate-entertainment',
   templateUrl: './rate-entertainment.component.html',
   styleUrls: ['./rate-entertainment.component.scss'],
-  imports: [IonicModule, CommonModule ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  standalone: false
 })
 export class RateEntertainmentComponent{
 
@@ -20,6 +21,7 @@ export class RateEntertainmentComponent{
     private modalCtrl: ModalController,
     private animeService: AnimeService,
     private notificationService: NotificationsService,
+    private translateService: TranslateService
   ) {}
 
   select(event: any) {
@@ -32,7 +34,7 @@ export class RateEntertainmentComponent{
   }
 
   submit() {
-    this.notificationService.displayNotification('Rating submitted successfully', 2000, 'top', 'checkmark-circle-outline', 'success');
+    this.notificationService.displayNotification(this.translateService.instant('modals.ratingSubmit'), 2000, 'top', 'checkmark-circle-outline', 'success');
     this.modalCtrl.dismiss({
       data: this.selectedRating,
     });

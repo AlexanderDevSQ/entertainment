@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "Benvenuto in Entertainment!",
+    "titleBack": "Bentornato in Entertainment!",
+    "content": "Alo, mi chiamo Alexander. Sono uno sviluppatore principiante. Ho sviluppato questo gioco per permettere a tutti di tenere traccia di ciò che guardano o giocano. Qualsiasi suggerimento è benvenuto!",
+    "thanks": "Grazie per aver scaricato la mia app e buon divertimento! 💗💗",
+    "button": "CHIUDI",
+    "moreInfoTitle": "💖 Informazioni su di me",
+    "moreInfoDescription": "Se ti piace questa applicazione, per favore considera di supportare il mio lavoro condividendolo con i tuoi amici e familiari :D"
+  },
+  "generalNames": {
+    "previous": "Precedente",
+    "next": "Successivo",
+    "search": "Cerca",
+    "collapseAll": "Comprimi tutto",
+    "expandAll": "Espandi tutto",
+    "noResults": "Nessun risultato trovato",
+    "loading": "Caricamento...",
+    "readMore": "Leggi di più",
+    "readLess": "Leggi meno",
+    "change": "Cambia",
+    "delete": "Elimina",
+    "save": "Salva",
+    "edit": "Modifica",
+    "loadMore": "Carica di più"
+  },
+  "sidebar": {
+    "profile": "Profilo",
+    "collections": "Le mie collezioni",
+    "tvShows": "Serie TV",
+    "settings": "Impostazioni",
+    "logout": "Disconnetti",
+    "aboutMe": "Informazioni su di me"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Lingua",
+      "languageDescription": "Clicca su 'Cambia lingua' per cambiare la tua lingua",
+      "languageButton": "Cambia lingua"
+    }
+  },
+  "tabs": {
+    "movies": "Film",
+    "series": "Serie",
+    "videogames": "Videogiochi",
+    "anime": "Anime",
+    "books": "Libri"
+  },
+  "rating": {
+    "rateTitle": "Vota",
+    "rateClose": "Chiudi",
+    "rateSubtitle": "Vota questo intrattenimento da 1 a 10",
+    "rateSubmit": "Invia"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Cerca Film",
+      "searchSeries": "Cerca Serie",
+      "searchVideogames": "Cerca Videogiochi",
+      "searchAnimes": "Cerca Anime",
+      "searchBook": "Cerca Libri"
+    },
+    "generalNames": {
+      "personal": "Personale",
+      "movies": "I miei film",
+      "series": "Le mie serie",
+      "videogames": "I miei videogiochi",
+      "animes": "I miei anime",
+      "books": "I miei libri",
+      "noRating": "Ancora nessuna valutazione",
+      "rateIt": "VOTALO!",
+      "userRating": "Valutazione utente",
+      "trailerView": "Clicca qui per vedere il trailer"
+    },
+    "status": {
+      "notStarted": "Non iniziato",
+      "watching": "In visione",
+      "completed": "Completato",
+      "onHold": "In sospeso",
+      "dropped": "Scartato",
+      "airing": "In onda",
+      "finished": "Concluso",
+      "noScore": "Nessun punteggio",
+      "noDate": "Nessuna data",
+      "noState": "Nessuno stato",
+      "noRating": "Ancora nessuna valutazione"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Valutazione inviata con successo",
+    "movieSubmitConfirm": "Film aggiunto con successo alla tua lista",
+    "seriesSubmitConfirm": "Serie aggiunta con successo alla tua lista",
+    "videogameSubmitConfirm": "Videogioco aggiunto con successo alla tua lista",
+    "animeSubmitConfirm": "Anime aggiunto con successo alla tua lista",
+    "movieDeleteConfirm": "Film rimosso con successo dalla tua lista",
+    "seriesDeleteConfirm": "Serie rimossa con successo dalla tua lista",
+    "videogameDeleteConfirm": "Videogioco rimosso con successo dalla tua lista",
+    "animeDeleteConfirm": "Anime rimosso con successo dalla tua lista",
+    "changeLanguage": "Lingua cambiata con successo, si prega di ricaricare l'applicazione per applicare le modifiche"
+  },
+  "ios": {
+    "iosTitle": "Perché non è disponibile nell'App Store?",
+    "iosDescription": "Nuestra app non è disponibile nell'App Store perché la pubblicazione su di esso richiede un costo annuale elevato per i conti di sviluppatori. Pertanto, tutte le contributi sono benvenute.",
+    "iosDownloadDescription": "Inoltre, puoi scaricare e installare l'app direttamente da qui!",
+    "iosDownloadHere": "Scarica qui"
+  }
+}

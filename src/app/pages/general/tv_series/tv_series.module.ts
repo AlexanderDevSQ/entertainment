@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { TvSeriesPageRoutingModule } from './tv_series-routing.module';
 import { TvSeriesPage } from './tv_series.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { TvSeriesPage } from './tv_series.page';
     FormsModule,
     IonicModule,
     TvSeriesPageRoutingModule,
+    TranslateModule
   ],
   declarations: [TvSeriesPage],
 })

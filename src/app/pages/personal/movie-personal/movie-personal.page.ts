@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { LoadingController, ModalController, NavController } from '@ionic/angular';
 import { RateEntertainmentComponent } from 'src/app/components/rate-entertainment/rate-entertainment.component';
 import { Movie } from 'src/app/interfaces/Movie';
 import { MovieService } from 'src/app/services/movie.service';
@@ -19,6 +19,8 @@ export class MoviePersonalPage implements OnInit {
   searchExpr : string = '';
   movies : Movie[] = [];
   isInfiniteScrollDisabled = false;
+  noResults: boolean = false;
+  subscription: any;
 
 
   constructor(
@@ -26,54 +28,91 @@ export class MoviePersonalPage implements OnInit {
     private navController: NavController,
     private modalController: ModalController,
     private movieService: MovieService,
+    private loadingController: LoadingController
   ) { }
+
+
+  ionViewWillEnter(){
+    this.loadStoredMovies();
+    this.subscription = this.movieService.movies$.subscribe(movies => {
+      this.movies = movies.filter(m => m.personal);
+    });
+  }
+
+  ionViewWillLeave(){
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 
   ngOnInit() {
     this.loadStoredMovies();
   }
 
-  searchMovies ( event: any ) {
+  async searchMovies ( event: any ) {
+    const loading = await this.loadingController.create({
+    });
+
+    loading.present();
+
     const searchExpr = event.target.value?.toLowerCase() || '';
     this.searchExpr = searchExpr;
     if (!searchExpr.trim() && searchExpr.length === 0 ) {
       this.moviesOnRequest = [];
       this.page = 1;
+      loading.dismiss();
       return;
-    }
 
+
+    }
+    this.noResults = false;
     this.requestService.getMoviesBySearch(this.searchExpr, this.page)
       .subscribe((response => {
+        if ( response.results.length === 0) {
+          this.noResults = true;
+          loading.dismiss();
+        }
         this.moviesOnRequest = [...response.results];
+        loading.dismiss();
       }))
-      
+
   }
 
   getStateColor(state: string | undefined): string {
     switch (state) {
-      case 'Not Started':
+      case 'personal.status.notStarted':
         return 'danger';
-      case 'Watching':
+      case 'personal.status.watching':
         return 'warning';
-      case 'Completed':
+      case 'personal.status.completed':
         return 'success';
-      case 'On Hold':
+      case 'personal.status.onHold':
+        return 'tertiary';
+      case 'personal.status.dropped':
         return 'medium';
-      case 'Dropped':
-        return 'dark';
       default:
-        return 'primary';
+        return 'medium';
     }
   }
 
-  onInfiniteScroll ( event : any ) {
+  resetPage() {
+    this.noResults = false;
+    this.moviesOnRequest = [];
+    this.page = 1;
+    this.searchExpr = '';
+  }
+
+  onInfiniteScroll () {
     this.page++;
     this.requestService.getMoviesBySearch(this.searchExpr, this.page)
       .subscribe((response) => {
+        if ( response.results.length === 0) {
+          this.noResults = true;
+          console.log(`No results found for ${this.searchExpr} ${response.results}`)
+          return;
+        }
         this.moviesOnRequest = [...this.moviesOnRequest, ...response.results]
       });
-    setTimeout(() => {
-      event.target.complete();
-    }, 500);
   }
 
   detailMovie ( movie: Movie) {
@@ -86,7 +125,7 @@ export class MoviePersonalPage implements OnInit {
 
   loadStoredMovies ( ) {
     this.movieService.getMovies().then((movies => {
-      this.movies = movies.filter((movie, index, self) => 
+      this.movies = movies.filter((movie, index, self) =>
         index === self.findIndex(m => m.id === movie.id));
     }));
   }
@@ -98,7 +137,7 @@ export class MoviePersonalPage implements OnInit {
     }, 500);
   }
 
-  
+
   async rateMovie ( movie: Movie) {
     const modal = await this.modalController.create({
       component: RateEntertainmentComponent

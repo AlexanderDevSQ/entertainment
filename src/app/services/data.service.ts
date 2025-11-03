@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 
 import Menu from '../interfaces/Menu';
 import Tab from '../interfaces/Tab';
+import { Setting } from '../interfaces/Setting';
+import { Language } from '../interfaces/Language';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +23,13 @@ export class DataService {
 
   getTabs() : Observable<Tab[]> {
     return this.http.get<any[]>('/assets/data/tabs.json');
+  }
+
+  getSettings() : Observable<Setting[]> {
+    return this.http.get<Setting[]>('/assets/data/settings.json');
+  }
+
+  getLanguages() : Observable<Language[]> {
+    return this.http.get<Language[]>('/assets/data/languages.json');
   }
 }

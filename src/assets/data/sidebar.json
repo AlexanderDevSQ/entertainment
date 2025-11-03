@@ -1,58 +1,55 @@
 [
     {
-        "title": "Profile",
+        "title": "sidebar.profile",
         "icon": "chevron-forward-outline",
         "url": "",
-        "emoji": "👤",
         "isOpen": false,
         "subMenu": [
             {
-                "title": "My collections",
-                "emoji": "📦",
+                "title": "sidebar.collections",
                 "isOpen": false,
                 "icon": "chevron-forward-outline",
                 "subMenu": [
                     {
-
-                        "title": "TV Shows",
-                        "icon": "chevron-forward-outline",
-                        "isOpen": false,
-                        "emoji": "📺",
-                        "subMenu": [
-                            {
-                                "title": "Movies",
-                                "url": "/movies-personal",
-                                "icon": "tv-outline"
-                            },
-                            {
-                                "title": "Series",
-                                "url": "/series-personal",
-                                "icon": "videocam-outline"
-                            }
-                        ]
+                        "title": "tabs.movies",
+                        "url": "/movies-personal",
+                        "icon": "tv-outline"
                     },
                     {
-                        "title": "Videogames",
+                        "title": "tabs.series",
+                        "url": "/series-personal",
+                        "icon": "videocam-outline"
+                    },
+                    {
+                        "title": "tabs.videogames",
                         "url": "/videogames-personal",
-                        "icon": "game-controller-outline",
-                        "emoji": "🎮"
+                        "icon": "game-controller-outline"
                     },
                     {
-                        "title": "Animes",
+                        "title": "tabs.anime",
                         "icon": "language-outline",
-                        "emoji": "🉐",
                         "url": "/anime-personal"
-                    },
-                    {
-                        "title": "Books",
-                        "url": "/books-personal",
-                        "icon": "book-outline",
-                        "emoji": "📚"
                     }
                 ]
-                
+
             }
-            
+
         ]
+    },
+    {
+      "title": "sidebar.settings",
+      "url": "/settings",
+      "icon": "settings-outline"
+    },
+    {
+      "title": "sidebar.aboutMe",
+      "url": "/about",
+      "icon": "information-circle-outline"
+    },
+    {
+      "title": "Iphone",
+      "url": "/ios",
+      "icon": "phone-portrait-outline"
+
     }
 ]

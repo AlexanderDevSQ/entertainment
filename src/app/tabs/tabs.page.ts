@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import Tab from '../interfaces/Tab';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-tabs',
@@ -15,8 +17,10 @@ export class TabsPage implements OnInit {
   selectedTab: string = 'tv-shows';
   constructor(
     private dataService: DataService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private storageService: StorageService
+  ) {
+  }
 
   ngOnInit() : void {
     this.dataService.getTabs()

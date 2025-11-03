@@ -16,6 +16,9 @@ log.txt
 /.sourcemaps
 /.versions
 /coverage
+/.vscode
+/.angular
+/android
 
 # Ionic
 /.ionic

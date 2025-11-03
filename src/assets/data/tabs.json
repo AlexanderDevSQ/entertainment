@@ -1,21 +1,21 @@
 [
     {
-        "title": "Movies",
+        "title": "tabs.movies",
         "emoji": "🎥",
         "url": "tv-films"
     },
     {
-        "title": "Series",
+        "title": "tabs.series",
         "emoji": "📺",
         "url": "tv-series"
     },
     {
-        "title": "Videogames",
+        "title": "tabs.videogames",
         "emoji": "🎮",
         "url": "videogames"
     },
     {
-        "title": "Anime",
+        "title": "tabs.anime",
         "emoji": "🉐",
         "url": "anime"
     }

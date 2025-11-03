@@ -14,7 +14,8 @@
     "android-build": "ionic capacitor build android && ionic capacitor sync",
     "android-sync": "npx cap sync && ionic capacitor copy android",
     "external-build": "ionic capacitor run android -l --external",
-    "android-sync-run": "npm run android-sync && npm run external-build"
+    "android-sync-run": "npm run android-sync && npm run external-build",
+    "update-locales": "node update-locales.js"
   },
   "private": true,
   "dependencies": {
@@ -31,10 +32,11 @@
     "@capacitor/core": "7.2.0",
     "@capacitor/haptics": "7.0.1",
     "@capacitor/keyboard": "7.0.1",
-    "@capacitor/status-bar": "7.0.1",
+    "@capacitor/status-bar": "^7.0.1",
     "@ionic/angular": "^8.6.2",
     "@ionic/storage-angular": "^4.0.0",
-    "@tailwindcss/cli": "^4.1.4",
+    "@ngx-translate/core": "^16.0.4",
+    "@ngx-translate/http-loader": "^16.0.1",
     "dotenv": "^16.5.0",
     "entertainment": "file:",
     "ionicons": "^7.0.0",
@@ -55,6 +57,10 @@
     "@capacitor/assets": "^3.0.5",
     "@capacitor/cli": "7.2.0",
     "@ionic/angular-toolkit": "^12.0.0",
+    "@tailwindcss/aspect-ratio": "latest",
+    "@tailwindcss/forms": "latest",
+    "@tailwindcss/line-clamp": "latest",
+    "@tailwindcss/typography": "latest",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
@@ -71,8 +77,9 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animated": "^2.0.0",
     "typescript": "~5.6.3"
   },
   "description": "An Ionic project"

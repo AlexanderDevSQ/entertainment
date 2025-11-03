@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Movies</ion-title>
+    <ion-title>{{'personal.generalNames.movies' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs"></ion-back-button>
     </ion-buttons>
@@ -16,21 +16,21 @@
   </ion-refresher>
   <ion-segment value="myMovies" color="tertiary">
     <ion-segment-button value="myMovies" content-id="myMovies">
-      <ion-label>My Movies</ion-label>
+      <ion-label>{{'personal.generalNames.movies' | translate}}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="search" content-id="search">
-      <ion-label>Search movies</ion-label>
+      <ion-label>{{'generalNames.search' | translate}}</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-segment-view>
     <!-- { {# This is where the collections functionality will be implemented #}} -->
     <ion-segment-content id="myMovies">
       <div class="grid">
-        <ion-title *ngIf="movies.length == 0">No movies found</ion-title>
-        <ion-card (click)="detailMovie(movie)" button *ngFor="let movie of movies;" class="card">
-          <ion-button expand="full" *ngIf="movie.personal" [color]="getStateColor(movie.personal.state)" class="ion-no-padding">
-            {{movie.personal.state}}
-          </ion-button>
+        <ion-title class="ion-padding text-center text-2xl text-pretty italic text-bold text-cyan-500" *ngIf="movies.length == 0">{{'generalNames.noResults' | translate}}</ion-title>
+        <ion-card class="ion-padding" (click)="detailMovie(movie)" button *ngFor="let movie of movies;" class="card">
+          <ion-title class="ion-padding text-center"  expand="full" *ngIf="movie.personal" [color]="getStateColor(movie.personal.state)">
+            {{movie.personal.state? (movie.personal.state | translate) : 'personal.generalNames.noStatus' | translate}}
+          </ion-title>
           <ion-img
           class="img"
           [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w200' + movie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
@@ -40,12 +40,12 @@
             <ion-label class="card-title">{{ movie.title ? movie.title : movie.title }}</ion-label>
           </ion-card-header>
           <ion-button *ngIf="movie.personal?.personal_rating == null" (click)="rateMovie(movie)" expand="full" color="tertiary" >
-            RATE IT!
+            {{'personal.generalNames.rateIt' | translate}}
           </ion-button>
-          <div *ngIf="movie.personal" class="personal">
-            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
-            <ion-chip class="star" color="{{movie.personal.personal_rating ? 'success' : 'danger'}}" >
-                <ion-label>{{ movie.personal.personal_rating ? (movie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+          <div *ngIf="movie.personal" class="personal ">
+            <ion-label style="margin-top:10px;" color="tertiary">{{'personal.generalNames.userRating' | translate}}</ion-label>
+            <ion-chip class="star mt-2" color="{{movie.personal.personal_rating ? 'success' : 'danger'}}" >
+                <ion-label>{{ movie.personal.personal_rating ? (movie.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'personal.generalNames.noRating' | translate }}</ion-label>
             </ion-chip>
           </div>
         </ion-card>
@@ -54,27 +54,25 @@
 
     <!-- { {# This is where the search functionality will be implemented #}} -->
     <ion-segment-content id="search">
-      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchMovies($event)" [debounce]="250"></ion-searchbar>
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus"  placeholder="{{'personal.search.searchMovie' | translate}}" (ionChange)="searchMovies($event)" (ionCancel)="resetPage()" [debounce]="250"></ion-searchbar>
       <ion-list>
+
         @for (movie of moviesOnRequest; track movie; let index = $index) {
-        <ion-item button (click)="detailMovie(movie)">
-          <ion-avatar slot="start">
-            <ion-img
-            [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
-            alt="{{movie.title}}">
-            </ion-img>
-          </ion-avatar>
-          <ion-label>{{ movie.title }}</ion-label>
-        </ion-item>
+          <ion-item button (click)="detailMovie(movie)">
+            <ion-avatar slot="start">
+              <img
+              [src]="movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : 'https://placehold.co/600x400?text=Image+Not+Found'"
+              alt="{{movie.title}}">
+            </ion-avatar>
+            <ion-label>{{ movie.title }}</ion-label>
+          </ion-item>
         }
       </ion-list>
-      <ion-infinite-scroll 
-        position="bottom" 
-        (ionInfinite)="onInfiniteScroll($event)"
-        [disabled]="isInfiniteScrollDisabled">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+      <ion-title *ngIf="noResults && searchExpr != ''">{{'generalNames.noResults' | translate}}</ion-title>
+      <ion-button class="ion-margin" *ngIf="moviesOnRequest.length > 0" [disabled]="noResults" (click)="onInfiniteScroll()" expand="block" >
+        {{'generalNames.loadMore' | translate}}
+      </ion-button>
     </ion-segment-content>
   </ion-segment-view>
-  
+
 </ion-content>

@@ -1,0 +1,24 @@
+<ion-content>
+  <div class="flex flex-col items-center justify-center text-center h-[100dvh]">
+    <ion-card class="ion-padding">
+      <h1 class="text-4xl" *ngIf="!firstTime">
+        {{ 'modalInit.title' | translate}}
+      </h1>
+      <h1 class="text-4xl" *ngIf="firstTime">
+        {{ 'modalInit.titleBack' | translate}}
+      </h1>
+
+      <ion-card-content>
+        <ion-label>
+          {{ 'modalInit.content' | translate}}
+        </ion-label>
+      </ion-card-content>
+      <img class="rounded-xl" src="assets/img/selfpicture4.png" alt="entertainment" />
+      <ion-card-header>
+        {{ 'modalInit.thanks' | translate}}
+      </ion-card-header>
+
+    </ion-card>
+    <ion-button color="none" expand="block" (click)="dismiss()">{{ 'modalInit.button' | translate}}</ion-button>
+  </div>
+</ion-content>

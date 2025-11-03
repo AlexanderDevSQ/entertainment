@@ -8,6 +8,7 @@ import { MovieDetailPageRoutingModule } from './movie-detail-routing.module';
 
 import { MovieDetailPage } from './movie-detail.page';
 import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { FiltroPipe } from 'src/app/pipes/filtro.pipe';
     FormsModule,
     IonicModule,
     MovieDetailPageRoutingModule,
-    FiltroPipe
+    FiltroPipe,
+    TranslateModule,
   ],
   declarations: [MovieDetailPage]
 })

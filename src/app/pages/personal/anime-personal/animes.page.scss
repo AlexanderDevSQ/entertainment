@@ -1,18 +1,19 @@
-.anime-grid {
+.grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 12px;
   }
-  
-  .anime-card {
+
+  .card {
     width: 160px;
   }
-  
-  .anime-img {
+
+  .img {
     object-fit: cover;
+    width: 160px;
     border-radius: 8px;
   }
-  
+
   .card-title {
     color:white;
   }

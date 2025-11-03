@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="text-center ">
+
+    <ion-card class="ion-padding flex flex-col gap-2">
+      <img class="rounded-xl shadow-lg mb-4" src="assets/img/selfpicture4.png" alt="About Me" />
+
+      <ion-card-header>
+        <h1 class="text-3xl font-bold flex justify-center items-center flex-col">
+          {{ 'modalInit.title' | translate }}
+          <img class="ion-padding h-6/12 w-6/12" src="assets/img/logo.png" alt="entertainment" />
+        </h1>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-label class="text-lg leading-relaxed">
+          {{ 'modalInit.content' | translate }}
+        </ion-label>
+
+        <div class="mt-4 text-gray-600 italic">
+          {{ 'modalInit.thanks' | translate }}
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Support Me Section -->
+    <ion-card class="ion-padding mt-6">
+      <h2 class="text-3xl font-semibold">{{'modalInit.moreInfoTitle' | translate}}</h2>
+
+      <ion-card-content>
+        <ion-label class="text-lg">
+          {{'modalInit.moreInfoDescription' | translate}}
+        </ion-label>
+
+        <div class="flex flex-col gap-4  justify-center items-center">
+          <ion-button expand="block" color="success" href="https://buymeacoffee.com/alexander102" target="_blank">
+            ☕ Buy Me a Coffee
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+</ion-content>

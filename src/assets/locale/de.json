@@ -1,0 +1,107 @@
+{
+  "modalInit": {
+    "title": "Willkommen bei Entertainment!",
+    "titleBack": "Willkommen zurück bei Entertainment!",
+    "content": "Hallo, mein Name ist Alexander. Ich bin ein neuer Entwickler. Ich entwickelte diese Anwendung, um alles zu verfolgen, was ich sehen oder spielen möchte. Jegliche Vorschläge sind willkommen!",
+    "thanks": "Danke, dass du meine App heruntergeladen hast, und viel Spaß! 💗💗",
+    "button": "SCHLIESSEN",
+    "moreInfoTitle": "💖 Unterstütze Mein Arbeiten",
+    "moreInfoDescription": "Wenn Sie diese Anwendung lieben, möchten Sie bitte mein Arbeiten unterstützen, indem Sie es mit Ihren Freunden und Familie teilen :D"
+  },
+  "generalNames": {
+    "previous": "Zurück",
+    "next": "Weiter",
+    "search": "Suche",
+    "collapseAll": "Alles zusammenklappen",
+    "expandAll": "Alles erweitern",
+    "noResults": "Keine Ergebnisse gefunden",
+    "loading": "Laden...",
+    "readMore": "Mehr lesen",
+    "readLess": "Weniger lesen",
+    "change": "Ändern",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "edit": "Bearbeiten",
+    "loadMore": "Laden Sie weitere"
+  },
+  "sidebar": {
+    "profile": "Profil",
+    "collections": "Meine Sammlungen",
+    "tvShows": "TV-Shows",
+    "settings": "Einstellungen",
+    "logout": "Abmelden",
+    "aboutMe": "Über mich"
+  },
+  "settings": {
+    "language": {
+      "languageTitle": "Sprache",
+      "languageDescription": "Klicke auf ‚Sprache ändern‘, um deine Sprache zu wechseln",
+      "languageButton": "Sprache ändern"
+    }
+  },
+  "tabs": {
+    "movies": "Filme",
+    "series": "Serien",
+    "videogames": "Videospiele",
+    "anime": "Animes",
+    "books": "Bücher"
+  },
+  "rating": {
+    "rateTitle": "Bewerten",
+    "rateClose": "Schließen",
+    "rateSubtitle": "Bewerte dieses Entertainment von 1 bis 10",
+    "rateSubmit": "Abschicken"
+  },
+  "personal": {
+    "search": {
+      "searchMovie": "Filme suchen",
+      "searchSeries": "Serien suchen",
+      "searchVideogames": "Videospiele suchen",
+      "searchAnimes": "Animes suchen",
+      "searchBook": "Bücher suchen"
+    },
+    "generalNames": {
+      "personal": "Persönlich",
+      "movies": "Meine Filme",
+      "series": "Meine Serien",
+      "videogames": "Meine Videospiele",
+      "animes": "Meine Animes",
+      "books": "Meine Bücher",
+      "noRating": "Noch keine Bewertung",
+      "rateIt": "BEWERTEN SIE ES!",
+      "userRating": "Nutzerbewertung",
+      "trailerView": "Hier klicken, um den Trailer zu sehen"
+    },
+    "status": {
+      "notStarted": "Nicht begonnen",
+      "watching": "Wird geschaut",
+      "completed": "Abgeschlossen",
+      "onHold": "In Wartestellung",
+      "dropped": "Abgebrochen",
+      "airing": "Läuft",
+      "finished": "Beendet",
+      "noScore": "Keine Wertung",
+      "noDate": "Kein Datum",
+      "noState": "Kein Status",
+      "noRating": "Noch keine Bewertung"
+    }
+  },
+  "modals": {
+    "ratingSubmit": "Bewertung erfolgreich abgeschickt",
+    "movieSubmitConfirm": "Film erfolgreich zu deiner Liste hinzugefügt",
+    "seriesSubmitConfirm": "Serie erfolgreich zu deiner Liste hinzugefügt",
+    "videogameSubmitConfirm": "Videospiel erfolgreich zu deiner Liste hinzugefügt",
+    "animeSubmitConfirm": "Anime erfolgreich zu deiner Liste hinzugefügt",
+    "movieDeleteConfirm": "Film erfolgreich von deiner Liste entfernt",
+    "seriesDeleteConfirm": "Serie erfolgreich von deiner Liste entfernt",
+    "videogameDeleteConfirm": "Videospiel erfolgreich von deiner Liste entfernt",
+    "animeDeleteConfirm": "Anime erfolgreich von deiner Liste entfernt",
+    "changeLanguage": "Sprache wurde erfolgreich geändert, bitte laden Sie die Anwendung neu, um die Änderungen zu übernehmen"
+  },
+  "ios": {
+    "iosTitle": "Warum ist es nicht auf dem App Store verfügbar?",
+    "iosDescription": "Unser App ist nicht auf dem App Store verfügbar, da es eine hohe jährliche Gebühr für Entwicklerkonto benötigt. Wir begrüßen alle Beiträge.",
+    "iosDownloadDescription": "Auch kannst du die App direkt von hier herunterladen und installieren!",
+    "iosDownloadHere": "Hier herunterladen"
+  }
+}

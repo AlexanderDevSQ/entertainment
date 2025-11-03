@@ -1,6 +1,6 @@
 import { VideogamesService } from './../../../services/videogames.service';
-import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NavController, ModalController, IonContent, LoadingController } from '@ionic/angular';
 import { RateEntertainmentComponent } from 'src/app/components/rate-entertainment/rate-entertainment.component';
 import { Videogame } from 'src/app/interfaces/Videogame';
 import { RequestsService } from 'src/app/services/requests.service';
@@ -15,16 +15,23 @@ export class VideogamesPersonalPage implements OnInit {
 
 
 
+
+  @ViewChild(IonContent) content?: IonContent;
+
   videogamesOnRequest: Videogame[] = [];
   page: number = 1;
   searchExpr : string = '';
   videogames: Videogame[] = [];
   isInfiniteScrollDisabled = false;
+  noResponse: boolean = false;
+  noResults: boolean = false;
+  subscription: any;
 
   constructor(
     private requestService: RequestsService,
-    private navController: NavController, 
+    private navController: NavController,
     private modalController: ModalController,
+    private loadingController: LoadingController,
     private videogameService: VideogamesService
 
   ) { }
@@ -33,50 +40,94 @@ export class VideogamesPersonalPage implements OnInit {
     this.loadStoredVideogames();
   }
 
+  ionViewWillEnter(){
+    this.loadStoredVideogames();
+    this.subscription = this.videogameService.videogames$.subscribe(videogames => {
+      this.videogames = videogames.filter(m => m.personal)
+    });
+  }
 
-  searchVideogames ( event? : any ) {
+  ionViewWillLeave(){
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  async searchVideogames ( event? : any ) {
+    const loading = await this.loadingController.create({
+      //Maybe Add Message, lets see how it goes
+    });
+
+    loading.present();
+
     const searchExpr = event.target.value?.toLowerCase() || '';
     this.searchExpr = searchExpr;
-    if (!searchExpr.trim() && searchExpr.length == 0) {
+    if (!searchExpr.trim() && searchExpr.length === 0) {
       this.videogamesOnRequest = [];
       this.page = 1;
+      loading.dismiss();
       return;
     }
 
     this.requestService.getVideogamesBySearch(this.searchExpr, this.page)
       .subscribe((response) => {
-        this.videogamesOnRequest = [...this.videogamesOnRequest, ...response.results];
+        if (response.length == 0 ) {
+          this.noResponse = true;
+          loading.dismiss();
+        } else{
+          this.videogamesOnRequest = [...response];
+          loading.dismiss();
+        }
       });
+  }
+
+  resetPage() {
+    this.noResults = false;
+    this.videogamesOnRequest = [];
+    this.page = 1;
+    this.searchExpr = '';
   }
 
   getStateColor(state: string | undefined): string {
     switch (state) {
-      case 'Not Started':
+      case 'personal.status.notStarted':
         return 'danger';
-      case 'Watching':
+      case 'personal.status.watching':
         return 'warning';
-      case 'Completed':
+      case 'personal.status.completed':
         return 'success';
-      case 'On Hold':
+      case 'personal.status.onHold':
+        return 'tertiary';
+      case 'personal.status.dropped':
         return 'medium';
-      case 'Dropped':
-        return 'dark';
       default:
-        return 'primary';
+        return 'medium';
     }
   }
 
-  onInfiniteScroll(event: any) {
+  async loadMore() {
+
+    const loading = await this.loadingController.create({
+    });
+
+    loading.present();
+
     this.page++;
     this.requestService.getVideogamesBySearch(this.searchExpr, this.page)
       .subscribe((response) => {
-        this.videogamesOnRequest = [...this.videogamesOnRequest, ...response.results];
+        if (response.length == 0 ) {
+          this.noResponse = true;
+          loading.dismiss();
+          return;
+        } else{
+          this.videogamesOnRequest = [...this.videogamesOnRequest, ...response];
+          loading.dismiss();
+        }
       });
-    setTimeout(() => {
-      event.target.complete();
-    }, 500);
 
   }
+
+  
 
 
   detailVideogame(videogame: Videogame) {
@@ -106,9 +157,9 @@ export class VideogamesPersonalPage implements OnInit {
       const modal = await this.modalController.create({
         component: RateEntertainmentComponent
       });
-  
+
       await modal.present();
-  
+
       const { data } = await modal.onWillDismiss();
       if (data ) {
         const rating = data.data;
@@ -118,4 +169,17 @@ export class VideogamesPersonalPage implements OnInit {
         this.videogameService.updateVideogame(videogame.id.toString(), videogame);
       }
     }
+  onInfiniteScroll() {
+    this.page++;
+    this.requestService.getVideogamesBySearch(this.searchExpr, this.page)
+      .subscribe((response) => {
+        if (response.length == 0 ) {
+          this.noResults = true;
+          return;
+        }
+        console.log(response)
+        this.videogamesOnRequest = [...this.videogamesOnRequest, ...response];
+      });
+  }
 }
+

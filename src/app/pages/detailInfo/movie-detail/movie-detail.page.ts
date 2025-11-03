@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { RateEntertainmentComponent } from 'src/app/components/rate-entertainment/rate-entertainment.component';
 import { Genre, Movie } from 'src/app/interfaces/Movie';
 import { MovieService } from 'src/app/services/movie.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { RequestsService } from 'src/app/services/requests.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-movie-detail',
@@ -18,7 +20,7 @@ export class MovieDetailPage  implements OnInit {
 
   movie! : Movie;
   showFullText: boolean = false;
-  availableStates: string[] = ['Not Started', 'Watching', 'Completed', 'On Hold', 'Dropped'];
+  availableStates: string[] = ['personal.status.notStarted', 'personal.status.watching', 'personal.status.completed', 'personal.status.onHold', 'personal.status.dropped'];
   genres: Genre[] = [];
   genreFromMovies: string[] = [];
 
@@ -31,12 +33,18 @@ export class MovieDetailPage  implements OnInit {
     private requestService: RequestsService,
     private moviesService: MovieService,
     private notificationService: NotificationsService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private translateService : TranslateService,
   ) { }
 
   ngOnInit() {
     const navigation = this.router.getCurrentNavigation();
     this.movie = navigation?.extras.state?.['movie'];
+    this.moviesService.getMovie(this.movie.id.toString()).then((movie) => {
+      if (movie) {
+        this.movie = movie;
+      }
+    });
     this.getGenres();
   }
 
@@ -56,27 +64,27 @@ export class MovieDetailPage  implements OnInit {
       this.moviesService.removeMovie(movie.id.toString());
       this.movie.personal = undefined;
       this.movie.isSaved = false;
-      this.notificationService.displayNotification('Movie removed succesfully from your list', 2000, 'top', 'alert-circle-outline', 'danger');
+      this.notificationService.displayNotification(this.translateService.instant('modals.movieDeleteConfirm'), 2000, 'top', 'alert-circle-outline', 'danger');
       return;
     }
     this.movie.isSaved = true;
-    this.movie.personal = { personal_rating: null, state: 'Not Started'};
+    this.movie.personal = { personal_rating: null, state: 'personal.status.notStarted'};
     this.moviesService.addMovie(movie);
-    this.notificationService.displayNotification('Movie added succesfully to your list', 2000, 'top', 'checkmark-circle-outline', 'success');
+    this.notificationService.displayNotification(this.translateService.instant('modals.movieSubmitConfirm'), 2000, 'top', 'checkmark-circle-outline', 'success');
   }
 
   getStateColor(state: string | undefined): string {
     switch (state) {
-      case 'Not Started':
+      case 'personal.status.notStarted':
         return 'danger';
-      case 'Watching':
+      case 'personal.status.watching':
         return 'warning';
-      case 'Completed':
+      case 'personal.status.completed':
         return 'success';
-      case 'On Hold':
+      case 'personal.status.onHold':
         return 'tertiary';
-      case 'Dropped':
-        return 'danger';
+      case 'personal.status.dropped':
+        return 'medium';
       default:
         return 'medium';
     }
@@ -84,7 +92,7 @@ export class MovieDetailPage  implements OnInit {
 
   changeState() {
     if (this.movie.personal) {
-      const currentIndex = this.availableStates.indexOf(this.movie.personal.state || 'Not Started');
+      const currentIndex = this.availableStates.indexOf(this.movie.personal.state || 'personal.status.notStarted');
       const nextIndex = (currentIndex + 1) % this.availableStates.length;
       const nextState = this.availableStates[nextIndex];
       this.movie.personal.state = nextState;

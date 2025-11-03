@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { MoviePersonalPageRoutingModule } from './movie-personal-routing.module';
 
 import { MoviePersonalPage } from './movie-personal.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
     MoviePersonalPageRoutingModule
   ],
   declarations: [MoviePersonalPage]

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>My Animes</ion-title>
+    <ion-title>{{'personal.generalNames.animes' | translate}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs"></ion-back-button>
     </ion-buttons>
@@ -14,38 +14,38 @@
       refreshingSpinner="circles">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-segment value="myAnimes" color="tertiary">
-    <ion-segment-button value="myAnimes" content-id="myAnimes">
-      <ion-label>My Animes</ion-label>
+  <ion-segment value="myanimes" color="tertiary">
+    <ion-segment-button value="myanimes" content-id="myanimes">
+      <ion-label>{{'personal.generalNames.animes' | translate}}</ion-label>
     </ion-segment-button>
     <ion-segment-button value="search" content-id="search">
-      <ion-label>Search Animes</ion-label>
+      <ion-label>{{'generalNames.search' | translate}}</ion-label>
     </ion-segment-button>
   </ion-segment>
   <ion-segment-view>
     <!-- { {# This is where the collections functionality will be implemented #}} -->
-    <ion-segment-content id="myAnimes">
-      <div class="anime-grid">
-        <ion-title *ngIf="animes.length == 0">No animes found</ion-title>
-        <ion-card (click)="detailAnime(anime)" button *ngFor="let anime of animes;" class="anime-card">
-          <ion-button expand="full" *ngIf="anime.personal" [color]="getStateColor(anime.personal.state)" class="ion-no-padding">
-            {{anime.personal.state}}
-          </ion-button>
+    <ion-segment-content id="myanimes">
+      <div class="grid">
+        <ion-title class="ion-padding text-center text-2xl text-pretty italic text-bold text-cyan-500" *ngIf="animes.length == 0">{{'generalNames.noResults' | translate}}</ion-title>
+        <ion-card (click)="detailAnime(anime)" button *ngFor="let anime of animes;" class="card">
+          <ion-title class="ion-padding text-center" expand="full" *ngIf="anime.personal" [color]="getStateColor(anime.personal.state)">
+            {{anime.personal.state? (anime.personal.state | translate) : 'personal.generalNames.noStatus' | translate}}
+          </ion-title>
           <ion-img
-            class="anime-image"
-            [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
-            alt="{{anime.title_english}}">
+          class="img"
+          [src]="anime.images['jpg'].image_url ? anime.images['jpg'].image_url : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{anime.title}}">
           </ion-img>
           <ion-card-header>
-            <ion-label class="card-title">{{ anime.title_english ? anime.title_english : anime.title }}</ion-label>
+            <ion-label class="card-title">{{ anime.title ? anime.title : anime.title }}</ion-label>
           </ion-card-header>
           <ion-button *ngIf="anime.personal?.personal_rating == null" (click)="rateAnime(anime)" expand="full" color="tertiary" >
-            RATE IT!
+            {{'personal.generalNames.rateIt' | translate}}
           </ion-button>
           <div *ngIf="anime.personal" class="personal">
-            <ion-label style="margin-top:10px;" color="tertiary">User Rating</ion-label>
+            <ion-label style="margin-top:10px;" color="tertiary">{{'personal.generalNames.userRating' | translate}}</ion-label>
             <ion-chip class="star" color="{{anime.personal.personal_rating ? 'success' : 'danger'}}" >
-                <ion-label>{{ anime.personal.personal_rating ? (anime.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'No rating yet' }}</ion-label>
+                <ion-label>{{ anime.personal.personal_rating ? (anime.personal.personal_rating | number : '1.0-1') + ' / 10 🏆' : 'personal.generalNames.noRating' | translate }}</ion-label>
             </ion-chip>
           </div>
         </ion-card>
@@ -54,27 +54,26 @@
 
     <!-- { {# This is where the search functionality will be implemented #}} -->
     <ion-segment-content id="search">
-      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="Search the anime here" (ionChange)="searchAnimes($event)" [debounce]="250"></ion-searchbar>
+      <ion-searchbar class="sticky" showClearButton="focus" showCancelButton="focus" placeholder="{{'personal.search.searchAnimes' | translate}}" (ionChange)="searchAnimes($event)" (ionCancel)="resetPage()" [debounce]="250"></ion-searchbar>
       <ion-list>
+        <ion-title *ngIf="noResults && animesOnRequest.length == 0 && searchExpr != ''">{{'generalNames.noResults' | translate}}</ion-title>
         @for (anime of animesOnRequest; track anime; let index = $index) {
         <ion-item button (click)="detailAnime(anime)">
           <ion-avatar slot="start">
-            <ion-img
-              [src]="anime.images['webp']['large_image_url'] ? anime.images['webp']['large_image_url'] : 'https://placehold.co/600x400?text=Image+Not+Found'"
-              alt="{{anime.title_english}}">
-            </ion-img>
+            <img
+          class="img"
+          [src]="anime.images['jpg'].image_url ? anime.images['jpg'].image_url : 'https://placehold.co/600x400?text=Image+Not+Found'"
+          alt="{{anime.title}}">
           </ion-avatar>
           <ion-label>{{ anime.title }}</ion-label>
         </ion-item>
         }
       </ion-list>
-      <ion-infinite-scroll 
-        position="bottom" 
-        (ionInfinite)="onIonInfinite($event)"
-        [disabled]="isInfiniteScrollDisabled">
-        <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+      <ion-title *ngIf="noResults && searchExpr != ''">{{'generalNames.noResults' | translate}}</ion-title>
+      <ion-button class="ion-margin" *ngIf="animesOnRequest.length > 0" (click)="onInfiniteScroll()" expand="block" >
+        {{'generalNames.loadMore' | translate}}
+      </ion-button>
     </ion-segment-content>
   </ion-segment-view>
-  
+
 </ion-content>

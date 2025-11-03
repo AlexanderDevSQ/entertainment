@@ -1,12 +1,12 @@
 
 <ion-tabs>
-  <ion-tab-bar slot="bottom">
+  <ion-tab-bar class=" flex justify-between items-center border-t-gray-900 border-t-2" slot="bottom">
     <ion-tab-button *ngFor="let tab of tabs"
       [tab]="tab.url"
       [href]="'/tabs/' + tab.url "
     >
       <ion-label>{{tab.emoji}}</ion-label>
-      <ion-text>{{tab.title}}</ion-text>
+      <ion-text>{{tab.title | translate}}</ion-text>
     </ion-tab-button>
   </ion-tab-bar>
 

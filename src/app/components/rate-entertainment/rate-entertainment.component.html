@@ -1,18 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Rate</ion-title>
+    <ion-title>{{ 'rating.rateTitle' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">Close</ion-button>
+      <ion-button (click)="dismiss()">{{ 'rating.rateClose' | translate }}</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding ion-text-center">
-  <h2>Please, rate this entertainment</h2>
+  <h2>{{ 'rating.rateSubtitle' | translate }}</h2>
 
   <div class="rating-buttons">
-    <ion-picker>
-      <ion-picker-column [value]="selectedRating" (ionChange)="select($event)"> 
+    <ion-picker class="mt-4 ion-padding">
+      <ion-picker-column [value]="selectedRating" (ionChange)="select($event)">
         <ion-picker-column-option
           [value]="n"
           *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]"
@@ -22,12 +22,12 @@
           >
           {{ n }}
         </ion-picker-column-option>
-        
+
       </ion-picker-column>
     </ion-picker>
   </div>
 
   <ion-button expand="full" class="ion-margin-top" [disabled]="!selectedRating" (click)="submit()">
-    Submit Rating
+    <h2>{{ 'rating.rateSubmit' | translate }}</h2>
   </ion-button>
 </ion-content>

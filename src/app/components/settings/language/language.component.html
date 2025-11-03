@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'settings.language.languageTitle' | translate }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">{{ 'rating.rateClose' | translate }}</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center">
+
+  <ion-list>
+    <ion-item class="ion-padding" (click)="submit(language)" button *ngFor="let language of languages">
+      <ion-label slot="end">{{language.flag}}</ion-label>
+      <ion-label>{{ language.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { VideogamesPageRoutingModule } from './videogames-routing.module';
 
 import { VideogamesPage } from './videogames.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule,
     VideogamesPageRoutingModule
   ],
   declarations: [VideogamesPage]

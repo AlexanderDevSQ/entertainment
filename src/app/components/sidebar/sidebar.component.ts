@@ -4,12 +4,13 @@ import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import Menu from 'src/app/interfaces/Menu';
 import { DataService } from 'src/app/services/data.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'menu-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  imports: [IonicModule, CommonModule],
+  imports: [IonicModule, CommonModule, TranslateModule],
 })
 export class SidebarComponent  implements OnInit {
 
@@ -26,7 +27,7 @@ export class SidebarComponent  implements OnInit {
   async ngOnInit(): Promise<void> {
     this.dataService.getSidebarMenus().subscribe((data : any) => {
       this.menus = data;
-    }) 
+    })
   }
 
   toggleSubMenu ( menu : Menu ) {
@@ -45,19 +46,29 @@ export class SidebarComponent  implements OnInit {
         }
       });
     };
-  
+
     collapseRecursive(this.menus);
   }
 
   goToLink(menu: Menu) {
+    console.log(menu)
     if (menu.subMenu) {
       this.toggleSubMenu(menu);
     } else {
       this.menuController.close();
-      this.navController.navigateForward('/personal' + menu.url, {
-        animated: true,
-        animationDirection: 'forward', // or 'back'
-      }); 
+      if ( menu.url?.startsWith('/settings'))
+      {
+        console.log('enter')
+        this.navController.navigateForward(menu.url, {
+          animated: true,
+          animationDirection: 'forward'
+        })
+      } else {
+        this.navController.navigateForward('/personal' + menu.url, {
+          animated: true,
+          animationDirection: 'forward', // or 'back'
+        });
+      }
     }
   }
 }
